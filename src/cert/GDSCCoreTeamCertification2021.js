@@ -131,7 +131,7 @@ function SvgComponent(props) {
         </text>
         <text
           x="460"
-          y="411"
+          y="431"
           fill="#676c72"
           fontFamily={`'Open Sans'`}
           fontSize="10px"
@@ -144,7 +144,7 @@ function SvgComponent(props) {
         </text>
         <text
           x="460"
-          y="425"
+          y="445"
           fill="#676c72"
           fontFamily={`'Open Sans'`}
           fontSize="10px"
@@ -156,24 +156,26 @@ function SvgComponent(props) {
           </tspan>
         </text>
         <text
-          x="400"
-          y="459"
+          x="94"
+          y="530"
           fill="#676c72"
           fontFamily={`'Open Sans'`}
           fontSize="10px"
         >
           Verify the authenticity of this certificate at:
+          <tspan fontWeight="500" fontFamily="Roboto">
+            {" "}
+            https://gdsc-cert.web.app/c/B15AC268EE25
+          </tspan>
         </text>
         <text
-          x="400"
-          y="473"
+          x="350"
+          y="533"
           fill="#676c72"
           fontWeight="500"
           fontFamily="Roboto"
           fontSize="10px"
-        >
-          https://gdsc-cert.web.app/c/B15AC268EE25
-        </text>
+        ></text>
       </svg>
     </Box>
   );
