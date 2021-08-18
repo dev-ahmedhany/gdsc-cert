@@ -16,7 +16,7 @@ export default function App() {
     <Router>
       <Switch>
         <Route exact component={Admin} path="/admin" />
-        <Route exact component={Cert} path="/cert" />
+        <Route exact component={Cert} path="/c/:id" />
         <Route exact component={Login} path="/login" />
         <Route exact component={Validate} path="/validate" />
         <Route exact component={Upload} path="/upload" />
