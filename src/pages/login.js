@@ -1,11 +1,12 @@
 import React from "react";
 import { Box, Button } from "@material-ui/core";
 import Particles from "react-particles-js";
+import firebase from "firebase/app";
 
-export default function Login({firebase,auth}) {
+export default function Login() {
   const signInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider);
+    firebase.auth().signInWithPopup(provider);
   };
 
   return (
