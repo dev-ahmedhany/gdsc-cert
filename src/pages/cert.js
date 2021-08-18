@@ -14,7 +14,14 @@ export default function Certe() {
         backgroundImage: `url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjOWU5ZTllIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=")`,
       }}
     >
-      <GDSCCoreTeamCertification2021 />
+      <GDSCCoreTeamCertification2021
+        id="B15AC268EE25"
+        name="Firstname Lastname"
+        university="[university]"
+        signature="Signature Here"
+        date="July 23, 2021"
+        leadUniversity="[GDSC Lead Name, University Name]"
+      />
     </Box>
   );
 }

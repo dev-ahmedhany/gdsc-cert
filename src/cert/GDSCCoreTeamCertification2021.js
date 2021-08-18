@@ -1,7 +1,15 @@
-import { Box } from "@material-ui/core";
 import * as React from "react";
+import { Box } from "@material-ui/core";
 
-function SvgComponent(props) {
+function SvgComponent({
+  id,
+  name,
+  university,
+  signature,
+  leadUniversity,
+  date,
+  ...props
+}) {
   return (
     <Box
       style={{
@@ -82,7 +90,7 @@ function SvgComponent(props) {
           fontFamily="Roboto"
           fontSize="37px"
         >
-          Firstname Lastname
+          {name}
         </text>
         <text
           x="106"
@@ -109,7 +117,7 @@ function SvgComponent(props) {
           fontFamily={`'Open Sans'`}
           fontSize="16px"
         >
-          [university] for the 2020 - 2021 academic year.
+          {`${university} for the 2020 - 2021 academic year.`}
         </text>
         <text
           x="106"
@@ -118,7 +126,7 @@ function SvgComponent(props) {
           fontFamily={`'Dancing Script'`}
           fontSize="48px"
         >
-          Signature Here
+          {signature}
         </text>
         <text
           x="106"
@@ -127,7 +135,7 @@ function SvgComponent(props) {
           fontFamily={`'Open Sans'`}
           fontSize="12px"
         >
-          [GDSC Lead Name, University Name]
+          {leadUniversity}
         </text>
         <text
           x="460"
@@ -138,8 +146,7 @@ function SvgComponent(props) {
         >
           Certificate ID:
           <tspan fontWeight="500" fontFamily="Roboto">
-            {" "}
-            B15AC268EE25
+            {` ${id}`}
           </tspan>
         </text>
         <text
@@ -151,8 +158,7 @@ function SvgComponent(props) {
         >
           Date of Issue:
           <tspan fontWeight="500" fontFamily="Roboto">
-            {" "}
-            July 23, 2021
+            {` ${date}`}
           </tspan>
         </text>
         <text
@@ -164,18 +170,9 @@ function SvgComponent(props) {
         >
           Verify the authenticity of this certificate at:
           <tspan fontWeight="500" fontFamily="Roboto">
-            {" "}
-            https://gdsc-cert.web.app/c/B15AC268EE25
+            {` https://gdsc-cert.web.app/c/${id}`}
           </tspan>
         </text>
-        <text
-          x="350"
-          y="533"
-          fill="#676c72"
-          fontWeight="500"
-          fontFamily="Roboto"
-          fontSize="10px"
-        ></text>
       </svg>
     </Box>
   );
