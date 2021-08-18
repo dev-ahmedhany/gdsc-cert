@@ -124,7 +124,7 @@ function SvgComponent({
           y="430"
           fill="#da3936"
           fontFamily={`'Dancing Script'`}
-          fontSize="48px"
+          fontSize="44px"
         >
           {signature}
         </text>
