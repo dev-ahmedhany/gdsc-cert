@@ -44,7 +44,7 @@ export default function App() {
         </Route>
         <Route exact component={Validate} path="/validate" />
         <Route exact component={user ? Admin : Login} path="/admin" />
-        <Route exact component={user ? Upload : Login} path="/upload" />
+        <Route exact component={user ? Upload : Login} path="/preview" />
         <Redirect to="/validate" />
       </Switch>
     </Router>
