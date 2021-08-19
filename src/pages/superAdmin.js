@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField, Paper, Box, Typography, Button } from "@material-ui/core";
 import firebase from "firebase/app";
 import { useCollection } from "react-firebase-hooks/firestore";
 import Particles from "react-particles-js";
-import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,19 +31,9 @@ export default function SuperAdmin({ user }) {
     firebase.firestore().collection("users")
   );
 
-  const [names, setNames] = useState("");
+  const [university, setUniversity] = useState("");
 
   const classes = useStyles();
-
-  const generateRandomID = (prefix) => {
-    let text = prefix;
-    const possible = "0123456789ABCDEFGHIJKLM0123456789NOPQRSTUVWXYZ0123456789";
-
-    for (let i = 0; i < 2; i++) {
-      text += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-    return text;
-  };
 
   return (
     <Box
@@ -89,6 +78,15 @@ export default function SuperAdmin({ user }) {
               alignItems="center"
               p={3}
             >
+              <TextField
+                    onChange={(e) => {
+                      setUniversity(e.target.value);
+                    }}
+                    value={university}
+                    className={classes.input}
+                    label="University"
+                    placeholder="Aswan University"
+                  />
               <Typography variant="h5"> Users</Typography>
               <span>
                 {value.docs.map((doc) => (
