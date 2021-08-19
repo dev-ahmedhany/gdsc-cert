@@ -19,3 +19,21 @@ code {
   width:100%;
   height:100%;
 }
+
+@font-face {
+  font-family: 'Dancing Script';
+  src: local('MyFont'), url(./Fonts/DancingScript-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: local('MyFont'), url(./Fonts/OpenSans-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-weight: 500;
+  src: local('MyFont'), url(./Fonts/Roboto-Medium.ttf) format('truetype');
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                            'embedded-opentype', and 'svg' */
+}

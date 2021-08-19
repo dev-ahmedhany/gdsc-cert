@@ -21,6 +21,7 @@ function SvgComponent({
     >
       <svg
         viewBox="0 0 960 540"
+        id="certificate"
         fill="none"
         strokeLinecap="square"
         strokeMiterlimit={10}

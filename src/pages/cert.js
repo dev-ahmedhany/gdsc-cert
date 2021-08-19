@@ -1,9 +1,10 @@
 import React from "react";
-import { Box } from "@material-ui/core";
+import { Box, Button } from "@material-ui/core";
 import GDSCCoreTeamCertification2021 from "../cert/GDSCCoreTeamCertification2021";
 import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
 import firebase from "firebase";
 import { Redirect } from "react-router-dom";
+const saveSvgAsPng = require('save-svg-as-png')
 
 export default function Cert({ match }) {
   const id = match.params.id;
@@ -19,6 +20,8 @@ export default function Cert({ match }) {
   return (
     <Box
       display="flex"
+      flexDirection="column"
+      pt={3}
       justifyContent="center"
       alignItems="center"
       style={{
@@ -30,6 +33,7 @@ export default function Cert({ match }) {
       {loading ? (
         <>Loading...</>
       ) : value ? (
+        <>
         <GDSCCoreTeamCertification2021
           id={id}
           name={value.name}
@@ -38,6 +42,15 @@ export default function Cert({ match }) {
           date={value.date}
           leadUniversity={value.leadUniversity}
         />
+        <Box m={5}>
+
+        <Button color="primary" variant="contained" onClick={()=>{saveSvgAsPng.saveSvgAsPng(document.getElementById("certificate"), "certificate.png",{
+  scale: 2,
+  encoderOptions: 1,
+  backgroundColor: 'white',
+})}}>Download</Button>
+        </Box>
+        </>
       ) : (
         <Redirect to={{ pathname: "/validate", state: { id: id } }} />
       )}
