@@ -1,6 +1,15 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { TextField, Paper, Box, Typography, Button } from "@material-ui/core";
+import {
+  TextField,
+  Paper,
+  Box,
+  Typography,
+  Button,
+  List,
+  ListItem,
+  Divider,
+} from "@material-ui/core";
 import firebase from "firebase/app";
 import { useCollection } from "react-firebase-hooks/firestore";
 import Particles from "react-particles-js";
@@ -16,11 +25,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     width: 330,
   },
-  input: {
-    marginBottom: theme.spacing(1),
-    flex: 1,
-    minWidth: "415px",
-  },
+  input: {},
   iconButton: {
     padding: 10,
   },
@@ -31,7 +36,18 @@ export default function SuperAdmin({ user }) {
     firebase.firestore().collection("users")
   );
 
-  const [university, setUniversity] = useState("");
+  const [disabled, setDisabled] = useState(false);
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
+
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index);
+  };
+
+  const [needAccess, loadingNeedAccess] = useCollection(
+    firebase.firestore().collection("needAccess")
+  );
+
+  const [id, setID] = useState("");
 
   const classes = useStyles();
 
@@ -78,15 +94,6 @@ export default function SuperAdmin({ user }) {
               alignItems="center"
               p={3}
             >
-              <TextField
-                    onChange={(e) => {
-                      setUniversity(e.target.value);
-                    }}
-                    value={university}
-                    className={classes.input}
-                    label="University"
-                    placeholder="Aswan University"
-                  />
               <Typography variant="h5"> Users</Typography>
               <span>
                 {value.docs.map((doc) => (
@@ -103,6 +110,68 @@ export default function SuperAdmin({ user }) {
                 ))}
               </span>
             </Box>
+            {loadingNeedAccess ? (
+              <>Loading...</>
+            ) : (
+              <span>
+                <List component="nav" aria-label="main mailbox folders">
+                  {needAccess.docs.map((doc, indx) => (
+                    <React.Fragment key={doc.id}>
+                      <ListItem
+                        button
+                        selected={selectedIndex === indx}
+                        onClick={(event) => handleListItemClick(event, indx)}
+                      >
+                        <Box
+                          display="flex"
+                          width="100%"
+                          justifyContent="space-between"
+                        >
+                          <Typography>{doc.id}</Typography>
+                        </Box>
+                      </ListItem>
+
+                      <Divider />
+                    </React.Fragment>
+                  ))}
+                </List>
+                <TextField
+                  onChange={(e) => setID(e.target.value)}
+                  value={id}
+                  className={classes.input}
+                  label="new id"
+                  placeholder="AA"
+                />
+                <Button
+                  disabled={disabled}
+                  onClick={() => {
+                    setDisabled(true);
+                    const db = firebase.firestore();
+                    // Get a new write batch
+                    var batch = db.batch();
+                    let certRef = db
+                      .collection("users")
+                      .doc(needAccess.docs[selectedIndex].id);
+                    batch.set(certRef, { cert: id });
+
+                    let deletetRef = db
+                      .collection("needAccess")
+                      .doc(needAccess.docs[selectedIndex].id);
+                    batch.delete(deletetRef);
+
+                    // Commit the batch
+                    batch.commit().then(() => {
+                      setDisabled(false);
+                      setID("");
+                    });
+                  }}
+                  color="primary"
+                  variant="contained"
+                >
+                  submit
+                </Button>
+              </span>
+            )}
           </Paper>
         </>
       ) : (
