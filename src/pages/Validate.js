@@ -50,8 +50,7 @@ export default function OutlinedCard({ location }) {
         >
           <h1>Verify a certificate</h1>
           <TextField
-            id="standard-basic"
-            label="Entre Certificate ID"
+            label="Enter Certificate ID"
             helperText="The Certificate ID can be found at the bottom of each certificate.."
             value={value}
             onChange={(e) => {
