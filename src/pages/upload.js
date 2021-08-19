@@ -8,8 +8,10 @@ import {
   Box,
   Typography,
   InputAdornment,
+  Button,
 } from "@material-ui/core";
 import GDSCCoreTeamCertification2021 from "../cert/GDSCCoreTeamCertification2021";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,14 +34,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Upload() {
+export default function Upload({ location }) {
   const [certCode, setCertCode] = useState("B15AC268EE25");
-  const [name, setName] = useState("Firstname Lastname");
-  const [university, setUniversity] = useState("[university]");
-  const [signature, setSignature] = useState("Signature Here");
-  const [date, setDate] = useState("July 23, 2021");
+  const [name, setName] = useState(
+    location?.state?.name || "Firstname Lastname"
+  );
+  const [university, setUniversity] = useState(
+    location?.state?.university || "[university]"
+  );
+  const [signature, setSignature] = useState(
+    location?.state?.signature || "Signature Here"
+  );
+  const [date, setDate] = useState(location?.state?.date || "July 23, 2021");
   const [leadUniversity, setLeadUniversity] = useState(
-    "[GDSC Lead Name, University Name]"
+    location?.state?.leadUniversity || "[GDSC Lead Name, University Name]"
   );
   const [error, setError] = useState("");
 
@@ -72,7 +80,7 @@ export default function Upload() {
     >
       <Paper style={{ margin: "50px" }} elevation={10}>
         <Box flexDirection="column" display="flex" alignItems="center" p={3}>
-          <Typography variant="h5"> Create new certificate</Typography>
+          <Typography variant="h5"> Preview new certificate</Typography>
           <TextField
             onChange={(e) => {
               setName(e.target.value);
@@ -135,6 +143,15 @@ export default function Upload() {
               }}
             />
           </Paper>
+          <Link
+            to={{
+              pathname: "/admin",
+            }}
+          >
+            <Button color="primary" variant="contained">
+              Create
+            </Button>
+          </Link>
         </Box>
       </Paper>
       <GDSCCoreTeamCertification2021

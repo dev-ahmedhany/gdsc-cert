@@ -4,6 +4,7 @@ import { TextField, Paper, Box, Typography, Button } from "@material-ui/core";
 import firebase from "firebase/app";
 import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
 import Particles from "react-particles-js";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -95,116 +96,140 @@ export default function Admin({ user }) {
               p={3}
             >
               <Typography variant="h5"> Create new certificates</Typography>
-              { !result?
-              <>
-              <TextField
-                onChange={(e) => {
-                  setUniversity(e.target.value);
-                }}
-                value={university}
-                className={classes.input}
-                label="University"
-                placeholder="Aswan University"
-              />
-              <TextField
-                onChange={(e) => {
-                  setSignature(e.target.value);
-                }}
-                value={signature}
-                label="Signature"
-                className={classes.input}
-                placeholder="Ahmed Hany"
-              />
-              <TextField
-                onChange={(e) => {
-                  setDate(e.target.value);
-                }}
-                value={date}
-                label="Date"
-                className={classes.input}
-                placeholder={new Date().toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "short",
-                  day: "numeric",
-                })}
-              />
-              <TextField
-                onChange={(e) => {
-                  setLeadUniversity(e.target.value);
-                }}
-                value={leadUniversity}
-                className={classes.input}
-                label="Position"
-                placeholder="Google Developer Student Clubs Lead, Aswan University"
-              />
-              <TextField
-                onChange={(e) => {
-                  setNames(e.target.value);
-                }}
-                label="members names"
-                value={names}
-                multiline
-                className={classes.input}
-                placeholder={"Core Member1\r\nCore Member2\r\nCore Member3"}
-              />
-              <Button
-                disabled={disabled}
-                onClick={() => {
-                  setDisabled(true);
-                  const db = firebase.firestore();
-                  names.split(/\r?\n/).forEach((name) => {
-                    const id1 = generateRandomID(prefix);
-                    let certRef = db
-                      .collection("cert")
-                      .doc(prefix)
-                      .collection("core21")
-                      .doc(id1);
-
-                    db.runTransaction((transaction) => {
-                      return transaction.get(certRef).then((cert) => {
-                        if (cert.exists) {
-                          throw new Error("Document does exist!");
-                        }
-                        transaction.set(certRef, {
-                          name,
+              {!result ? (
+                <>
+                  <TextField
+                    onChange={(e) => {
+                      setUniversity(e.target.value);
+                    }}
+                    value={university}
+                    className={classes.input}
+                    label="University"
+                    placeholder="Aswan University"
+                  />
+                  <TextField
+                    onChange={(e) => {
+                      setSignature(e.target.value);
+                    }}
+                    value={signature}
+                    label="Signature"
+                    className={classes.input}
+                    placeholder="Ahmed Hany"
+                  />
+                  <TextField
+                    onChange={(e) => {
+                      setDate(e.target.value);
+                    }}
+                    value={date}
+                    label="Date"
+                    className={classes.input}
+                    placeholder={new Date().toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  />
+                  <TextField
+                    onChange={(e) => {
+                      setLeadUniversity(e.target.value);
+                    }}
+                    value={leadUniversity}
+                    className={classes.input}
+                    label="Position"
+                    placeholder="Google Developer Student Clubs Lead, Aswan University"
+                  />
+                  <TextField
+                    onChange={(e) => {
+                      setNames(e.target.value);
+                    }}
+                    label="members names"
+                    value={names}
+                    multiline
+                    className={classes.input}
+                    placeholder={"Core Member1\r\nCore Member2\r\nCore Member3"}
+                  />
+                  <Box
+                    display="flex"
+                    width="100%"
+                    justifyContent="space-between"
+                  >
+                    <Link
+                      style={{ textDecoration: "none" }}
+                      to={{
+                        pathname: "/preview",
+                        state: {
+                          name: names.split(/\r?\n/)[0],
                           university,
                           signature,
                           date,
                           leadUniversity,
+                        },
+                      }}
+                    >
+                      <Button disabled={disabled} variant="contained">
+                        Preview
+                      </Button>
+                    </Link>
+                    <Button
+                      disabled={disabled}
+                      onClick={() => {
+                        setDisabled(true);
+                        const db = firebase.firestore();
+                        names.split(/\r?\n/).forEach((name) => {
+                          const id1 = generateRandomID(prefix);
+                          let certRef = db
+                            .collection("cert")
+                            .doc(prefix)
+                            .collection("core21")
+                            .doc(id1);
+
+                          db.runTransaction((transaction) => {
+                            return transaction.get(certRef).then((cert) => {
+                              if (cert.exists) {
+                                throw new Error("Document does exist!");
+                              }
+                              transaction.set(certRef, {
+                                name,
+                                university,
+                                signature,
+                                date,
+                                leadUniversity,
+                              });
+                              return { name, id1 };
+                            });
+                          })
+                            .then(({ name, id1 }) => {
+                              const finalResult = `${name}\r\nhttps://gdsc-cert.web.app/c/${id1}\r\n`;
+                              setResult((r) => r + finalResult);
+                            })
+                            .catch((err) => {
+                              console.error(err);
+                            });
                         });
-                        return { name, id1 };
-                      });
-                    })
-                      .then(({ name, id1 }) => {
-                        const finalResult = `${name}\r\nhttps://gdsc-cert.web.app/c/${id1}\r\n`;
-                        setResult((r)=>r+finalResult);
-                      })
-                      .catch((err) => {
-                        console.error(err);
-                      });
-                  });
-                }}
-                color="primary"
-                variant="contained"
-              >
-                submit
-              </Button>
-              </>
-              :
-              <TextField
-                label="Results"
-                value={result}
-                multiline
-                className={classes.input}
-              />}
+                      }}
+                      color="primary"
+                      variant="contained"
+                    >
+                      submit
+                    </Button>
+                  </Box>
+                </>
+              ) : (
+                <TextField
+                  label="Results"
+                  value={result}
+                  multiline
+                  className={classes.input}
+                />
+              )}
             </Box>
           </Paper>
         </>
       ) : (
         <>
-          <Typography style={{color:"white"}}>
+          <Typography style={{ color: "white" }}>
             {`You Don't have Admin rights`}
-            <br/>
+            <br />
             {`Contact Ahmed Hany, Your Email : `}
             <br />
             {`${user.email}`}
