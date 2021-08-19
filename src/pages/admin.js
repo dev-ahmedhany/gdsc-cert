@@ -202,10 +202,12 @@ export default function Admin({ user }) {
         </>
       ) : (
         <>
-          <Typography>
-            {`You Don't have admin rights, Contact with Ahmed Hany `}
+          <Typography style={{color:"white"}}>
+            {`You Don't have Admin rights`}
+            <br/>
+            {`Contact Ahmed Hany, Your Email : `}
             <br />
-            {`Your Email : ${user.email}`}
+            {`${user.email}`}
           </Typography>
           <Button
             onClick={() => {
