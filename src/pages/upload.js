@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   input: {
     marginLeft: theme.spacing(1),
     flex: 1,
-    minWidth:"300px"
+    minWidth: "300px",
   },
   iconButton: {
     padding: 10,
@@ -35,10 +35,12 @@ const useStyles = makeStyles((theme) => ({
 export default function Upload() {
   const [certCode, setCertCode] = useState("B15AC268EE25");
   const [name, setName] = useState("Firstname Lastname");
-  const [university, setUniversity] = useState("[university]")
-  const [signature, setSignature] = useState("Signature Here")
-  const [date, setDate] = useState("July 23, 2021")
-  const [leadUniversity, setLeadUniversity] = useState("[GDSC Lead Name, University Name]")
+  const [university, setUniversity] = useState("[university]");
+  const [signature, setSignature] = useState("Signature Here");
+  const [date, setDate] = useState("July 23, 2021");
+  const [leadUniversity, setLeadUniversity] = useState(
+    "[GDSC Lead Name, University Name]"
+  );
   const [error, setError] = useState("");
 
   const classes = useStyles();
@@ -68,46 +70,50 @@ export default function Upload() {
         backgroundImage: `url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjOWU5ZTllIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=")`,
       }}
     >
-      <Paper style={{margin:"50px"}} elevation={10}>
+      <Paper style={{ margin: "50px" }} elevation={10}>
         <Box flexDirection="column" display="flex" alignItems="center" p={3}>
           <Typography variant="h5"> Create new certificate</Typography>
           <TextField
-              onChange={(e)=>{setName(e.target.value)}}
-              value={name}
-              className={classes.input}
-              placeholder="name"
-              
-            />
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+            value={name}
+            className={classes.input}
+            placeholder="name"
+          />
           <TextField
-              onChange={(e)=>{setUniversity(e.target.value)}}
-              value={university}
-              className={classes.input}
-              placeholder="university"
-              
-            />
-            <TextField
-              onChange={(e)=>{setSignature(e.target.value)}}
-              value={signature}
-              className={classes.input}
-              placeholder="signature"
-              
-            />
-            <TextField
-              onChange={(e)=>{setDate(e.target.value)}}
-              value={date}
-              className={classes.input}
-              placeholder="date"
-              
-            />
-            <TextField
-              onChange={(e)=>{setLeadUniversity(e.target.value)}}
-              value={leadUniversity}
-              className={classes.input}
-              placeholder="leadUniversity"
-              
-            />
+            onChange={(e) => {
+              setUniversity(e.target.value);
+            }}
+            value={university}
+            className={classes.input}
+            placeholder="university"
+          />
+          <TextField
+            onChange={(e) => {
+              setSignature(e.target.value);
+            }}
+            value={signature}
+            className={classes.input}
+            placeholder="signature"
+          />
+          <TextField
+            onChange={(e) => {
+              setDate(e.target.value);
+            }}
+            value={date}
+            className={classes.input}
+            placeholder="date"
+          />
+          <TextField
+            onChange={(e) => {
+              setLeadUniversity(e.target.value);
+            }}
+            value={leadUniversity}
+            className={classes.input}
+            placeholder="leadUniversity"
+          />
           <Paper className={classes.textBox}>
-          
             <TextField
               onChange={handleChange}
               value={certCode}
@@ -131,13 +137,14 @@ export default function Upload() {
           </Paper>
         </Box>
       </Paper>
-      <GDSCCoreTeamCertification2021 
+      <GDSCCoreTeamCertification2021
         id={certCode}
         name={name}
         university={university}
         signature={signature}
         date={date}
-        leadUniversity={leadUniversity}/>
+        leadUniversity={leadUniversity}
+      />
     </Box>
   );
 }

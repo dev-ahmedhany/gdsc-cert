@@ -28,7 +28,6 @@ if (!firebase.apps.length) {
 }
 
 const auth = firebase.auth();
-//const firestore = firebase.firestore();
 
 export default function App() {
   const [user, loading] = useAuthState(auth);
@@ -39,12 +38,14 @@ export default function App() {
     <Router>
       <Switch>
         <Route exact component={Cert} path="/c/:id" />
-        <Route exact path="/login" >
-        <Login firebase={firebase} auth={auth}/>
+        <Route exact path="/login">
+          <Login firebase={firebase} auth={auth} />
         </Route>
         <Route exact component={Validate} path="/validate" />
-        <Route exact component={user ? Admin : Login} path="/admin" />
-        <Route exact component={user ? Upload : Login} path="/preview" />
+        <Route exact path="/admin">
+          {user ? <Admin user={user} /> : <Login />}
+        </Route>
+        <Route exact component={user?.email ? Upload : Login} path="/preview" />
         <Redirect to="/validate" />
       </Switch>
     </Router>
