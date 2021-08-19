@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Box } from "@material-ui/core";
 
 function SvgComponent({
   id,
@@ -8,17 +7,11 @@ function SvgComponent({
   signature,
   leadUniversity,
   date,
+  style,
   ...props
 }) {
   return (
-    <Box
-      style={{
-        width: "960px",
-        height: "540px",
-        boxShadow: "1px 1px 3px 1px #333",
-        position: "relative",
-      }}
-    >
+    <>
       <svg
         viewBox="0 0 960 540"
         id="certificate"
@@ -27,6 +20,10 @@ function SvgComponent({
         strokeMiterlimit={10}
         xmlnsXlink="http://www.w3.org/1999/xlink"
         xmlns="http://www.w3.org/2000/svg"
+        style={{
+          boxShadow: "1px 1px 3px 1px #333",
+          ...style,
+        }}
         {...props}
       >
         <clipPath id="prefix__a">
@@ -321,7 +318,7 @@ function SvgComponent({
           </tspan>
         </text>
       </svg>
-    </Box>
+    </>
   );
 }
 

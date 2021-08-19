@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Button } from "@material-ui/core";
 import GDSCCoreTeamCertification2021 from "../cert/GDSCCoreTeamCertification2021";
 import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
@@ -16,6 +16,8 @@ export default function Cert({ match }) {
       .collection("core21")
       .doc(id)
   );
+
+  const [width] = useState(window.innerWidth * 0.9);
 
   return (
     <Box
@@ -41,6 +43,7 @@ export default function Cert({ match }) {
             signature={value.signature}
             date={value.date}
             leadUniversity={value.leadUniversity}
+            style={{ width }}
           />
           <Box m={5}>
             <Button
