@@ -26,6 +26,13 @@ function SvgComponent({
         }}
         {...props}
       >
+        <defs>
+          <style>
+            {
+              ".text__cls{-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;-webkit-tap-highlight-color: transparent;}"
+            }
+          </style>
+        </defs>
         <clipPath id="prefix__a">
           <path d="M0 0h960v540H0V0z" />
         </clipPath>
@@ -210,6 +217,7 @@ function SvgComponent({
           fontWeight="500"
           fontFamily="Roboto"
           fontSize="37px"
+          className="text__cls"
         >
           {name}
         </text>
@@ -219,6 +227,7 @@ function SvgComponent({
           fill="#5f6368"
           fontFamily={`'Open Sans'`}
           fontSize="16px"
+          className="text__cls"
         >
           is hereby awarded this Certificate of Appreciation for successfully
         </text>
@@ -228,6 +237,7 @@ function SvgComponent({
           fill="#5f6368"
           fontFamily={`'Open Sans'`}
           fontSize="16px"
+          className="text__cls"
         >
           serving as a Google Developer Student Club Core Team Member at
         </text>
@@ -238,6 +248,7 @@ function SvgComponent({
             fill="#5f6368"
             fontFamily={`'Open Sans'`}
             fontSize="16px"
+            className="text__cls"
           >
             {`${university} for the 2020 - 2021 academic year.`}
           </text>
@@ -249,6 +260,7 @@ function SvgComponent({
               fill="#5f6368"
               fontFamily={`'Open Sans'`}
               fontSize="16px"
+              className="text__cls"
             >
               {`${university}`}
             </text>
@@ -258,6 +270,7 @@ function SvgComponent({
               fill="#5f6368"
               fontFamily={`'Open Sans'`}
               fontSize="16px"
+              className="text__cls"
             >
               {`for the 2020 - 2021 academic year.`}
             </text>
@@ -269,6 +282,7 @@ function SvgComponent({
           fill="#da3936"
           fontFamily={`'Dancing Script'`}
           fontSize="44px"
+          className="text__cls"
         >
           {signature}
         </text>
@@ -278,6 +292,7 @@ function SvgComponent({
           fill="#676c72"
           fontFamily={`'Open Sans'`}
           fontSize="12px"
+          className="text__cls"
         >
           {leadUniversity}
         </text>
@@ -287,6 +302,7 @@ function SvgComponent({
           fill="#676c72"
           fontFamily={`'Open Sans'`}
           fontSize="10px"
+          className="text__cls"
         >
           Certificate ID:
           <tspan fontWeight="500" fontFamily="Roboto">
@@ -299,6 +315,7 @@ function SvgComponent({
           fill="#676c72"
           fontFamily={`'Open Sans'`}
           fontSize="10px"
+          className="text__cls"
         >
           Date of Issue:
           <tspan fontWeight="500" fontFamily="Roboto">
@@ -311,6 +328,7 @@ function SvgComponent({
           fill="#676c72"
           fontFamily={`'Open Sans'`}
           fontSize="10px"
+          className="text__cls"
         >
           Verify the authenticity of this certificate at:
           <tspan fontWeight="500" fontFamily="Roboto">
