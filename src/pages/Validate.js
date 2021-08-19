@@ -17,7 +17,7 @@ export default function OutlinedCard({ location }) {
       style={{
         background:
           "radial-gradient(at 50% 100%, rgba(123, 22, 255, 0.75), rgb(15, 1, 94))",
-        height: "100vh",
+        minHeight: "100vh",
       }}
     >
       <Particles
