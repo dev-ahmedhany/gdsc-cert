@@ -37,7 +37,7 @@ export default function SuperAdmin({ user }) {
   );
 
   const [disabled, setDisabled] = useState(false);
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
@@ -114,6 +114,10 @@ export default function SuperAdmin({ user }) {
             ) : (
               needAccess.docs.length > 0 && (
                 <span>
+                  <Typography variant="h5">
+                    {" "}
+                    need Access {needAccess.docs.length}
+                  </Typography>
                   <List component="nav" aria-label="main mailbox folders">
                     {needAccess.docs.map((doc, indx) => (
                       <React.Fragment key={doc.id}>
