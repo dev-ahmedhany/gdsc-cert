@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { TextField, Paper, Box, Typography, Button } from "@material-ui/core";
 import firebase from "firebase/app";
 import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
+import Particles from "react-particles-js";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   input: {
     marginBottom: theme.spacing(1),
     flex: 1,
-    minWidth: "300px",
+    minWidth: "415px",
   },
   iconButton: {
     padding: 10,
@@ -30,13 +31,13 @@ export default function Admin({ user }) {
     firebase.firestore().collection("users").doc(user.email)
   );
   const prefix = value?.cert;
-  const [name, setName] = useState("Firstname Lastname");
-  const [university, setUniversity] = useState("[university]");
-  const [signature, setSignature] = useState("Signature Here");
-  const [date, setDate] = useState("July 23, 2021");
-  const [leadUniversity, setLeadUniversity] = useState(
-    "[GDSC Lead Name, University Name]"
-  );
+  const [names, setNames] = useState("");
+  const [result, setResult] = useState("");
+  const [disabled, setDisabled] = useState(false);
+  const [university, setUniversity] = useState("");
+  const [signature, setSignature] = useState("");
+  const [date, setDate] = useState("");
+  const [leadUniversity, setLeadUniversity] = useState("");
 
   const classes = useStyles();
 
@@ -57,10 +58,31 @@ export default function Admin({ user }) {
       justifyContent="center"
       alignItems="center"
       style={{
-        backgroundColor: "#9e9e9e",
-        backgroundImage: `url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjOWU5ZTllIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=")`,
+        background:
+          "radial-gradient(at 50% 100%, rgba(123, 22, 255, 0.75), rgb(15, 1, 94))",
+        height: "100vh",
       }}
     >
+      <Particles
+        params={{
+          particles: {
+            number: {
+              value: 50,
+            },
+            size: {
+              value: 3,
+            },
+          },
+          interactivity: {
+            events: {
+              onhover: {
+                enable: true,
+                mode: "repulse",
+              },
+            },
+          },
+        }}
+      />
       {loading ? (
         <>Loading...</>
       ) : prefix ? (
@@ -72,38 +94,39 @@ export default function Admin({ user }) {
               alignItems="center"
               p={3}
             >
-              <Typography variant="h5"> Create new certificate</Typography>
-              <TextField
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-                value={name}
-                className={classes.input}
-                placeholder="name"
-              />
+              <Typography variant="h5"> Create new certificates</Typography>
+              { !result?
+              <>
               <TextField
                 onChange={(e) => {
                   setUniversity(e.target.value);
                 }}
                 value={university}
                 className={classes.input}
-                placeholder="university"
+                label="University"
+                placeholder="Aswan University"
               />
               <TextField
                 onChange={(e) => {
                   setSignature(e.target.value);
                 }}
                 value={signature}
+                label="Signature"
                 className={classes.input}
-                placeholder="signature"
+                placeholder="Ahmed Hany"
               />
               <TextField
                 onChange={(e) => {
                   setDate(e.target.value);
                 }}
                 value={date}
+                label="Date"
                 className={classes.input}
-                placeholder="date"
+                placeholder={new Date().toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })}
               />
               <TextField
                 onChange={(e) => {
@@ -111,46 +134,69 @@ export default function Admin({ user }) {
                 }}
                 value={leadUniversity}
                 className={classes.input}
-                placeholder="leadUniversity"
+                label="Position"
+                placeholder="Google Developer Student Clubs Lead, Aswan University"
+              />
+              <TextField
+                onChange={(e) => {
+                  setNames(e.target.value);
+                }}
+                label="members names"
+                value={names}
+                multiline
+                className={classes.input}
+                placeholder={"Core Member1\r\nCore Member2\r\nCore Member3"}
               />
               <Button
+                disabled={disabled}
                 onClick={() => {
+                  setDisabled(true);
                   const db = firebase.firestore();
-                  const id1 = generateRandomID(prefix);
-                  let certRef = db
-                    .collection("cert")
-                    .doc(prefix)
-                    .collection("core21")
-                    .doc(id1);
+                  names.split(/\r?\n/).forEach((name) => {
+                    const id1 = generateRandomID(prefix);
+                    let certRef = db
+                      .collection("cert")
+                      .doc(prefix)
+                      .collection("core21")
+                      .doc(id1);
 
-                  db.runTransaction((transaction) => {
-                    return transaction.get(certRef).then((cert) => {
-                      if (cert.exists) {
-                        throw new Error("Document does exist!");
-                      }
-                      transaction.set(certRef, {
-                        name,
-                        university,
-                        signature,
-                        date,
-                        leadUniversity,
+                    db.runTransaction((transaction) => {
+                      return transaction.get(certRef).then((cert) => {
+                        if (cert.exists) {
+                          throw new Error("Document does exist!");
+                        }
+                        transaction.set(certRef, {
+                          name,
+                          university,
+                          signature,
+                          date,
+                          leadUniversity,
+                        });
+                        return { name, id1 };
                       });
-                      return id1;
-                    });
-                  })
-                    .then((newPopulation) => {
-                      console.log("Document successfully written!");
                     })
-                    .catch((err) => {
-                      // This will be an "population is too big" error.
-                      console.error(err);
-                    });
+                      .then(({ name, id1 }) => {
+                        const finalResult = `${name}\r\nhttps://gdsc-cert.web.app/c/${id1}\r\n`;
+                        setResult((r)=>r+finalResult);
+                      })
+                      .catch((err) => {
+                        console.error(err);
+                      });
+                  });
                 }}
                 color="primary"
                 variant="contained"
               >
                 submit
               </Button>
+              </>
+              :
+              <TextField
+                label="Results"
+                value={result}
+                multiline
+                className={classes.input}
+              />}
             </Box>
           </Paper>
         </>
