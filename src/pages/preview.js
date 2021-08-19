@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Upload({ location }) {
+export default function Preview({ location }) {
   const [certCode, setCertCode] = useState("B15AC268EE25");
   const [name, setName] = useState(
     location?.state?.name || "Firstname Lastname"

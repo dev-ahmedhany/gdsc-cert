@@ -1,5 +1,4 @@
 import React from "react";
-import Upload from "./pages/upload";
 import Admin from "./pages/admin";
 import Cert from "./pages/cert";
 import Login from "./pages/login";
@@ -14,6 +13,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
+import SuperAdmin from "./pages/superAdmin";
 
 if (!firebase.apps.length) {
   firebase.initializeApp({
@@ -38,14 +38,13 @@ export default function App() {
     <Router>
       <Switch>
         <Route exact component={Cert} path="/c/:id" />
-        <Route exact path="/login">
-          <Login firebase={firebase} auth={auth} />
-        </Route>
         <Route exact component={Validate} path="/validate" />
-        <Route exact path="/admin">
-          {user ? <Admin user={user} /> : <Login />}
+        <Route exact path={["/admin", "/preview"]}>
+          {user?.email ? <Admin user={user} /> : <Login />}
         </Route>
-        <Route exact component={user?.email ? Upload : Login} path="/preview" />
+        <Route exact path="/Ahmed">
+          {user ? <SuperAdmin user={user} /> : <Login />}
+        </Route>
         <Redirect to="/validate" />
       </Switch>
     </Router>

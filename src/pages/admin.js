@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField, Paper, Box, Typography, Button } from "@material-ui/core";
 import firebase from "firebase/app";
 import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
 import Particles from "react-particles-js";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import Preview from "./preview";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,9 +29,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Admin({ user }) {
+  const location = useLocation();
+
   const [value, loading] = useDocumentDataOnce(
     firebase.firestore().collection("users").doc(user.email)
   );
+
+  useEffect(() => {
+    if (!loading && !value?.cert) {
+      firebase.firestore().collection("needAccess").doc(user.email).set({
+        created: firebase.firestore.FieldValue.serverTimestamp(),
+      });
+    }
+  }, [loading, value, user.email]);
   const prefix = value?.cert;
   const [names, setNames] = useState("");
   const [result, setResult] = useState("");
@@ -52,7 +63,7 @@ export default function Admin({ user }) {
     return text;
   };
 
-  return (
+  return location.pathname === "/admin" ? (
     <Box
       display="flex"
       flexDirection="column"
@@ -244,5 +255,7 @@ export default function Admin({ user }) {
         </>
       )}
     </Box>
+  ) : (
+    <Preview location={location} />
   );
 }

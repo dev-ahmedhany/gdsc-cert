@@ -15,7 +15,7 @@ export default function Cert({ match }) {
       .collection("core21")
       .doc(id)
   );
-  console.log(value);
+
   return (
     <Box
       display="flex"
