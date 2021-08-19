@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SuperAdmin({ user }) {
   const [value, loading] = useCollection(
-    firebase.firestore().collection("users")
+    firebase.firestore().collection("users").orderBy("cert")
   );
 
   const [disabled, setDisabled] = useState(false);
@@ -92,85 +92,86 @@ export default function SuperAdmin({ user }) {
               flexDirection="column"
               display="flex"
               alignItems="center"
+              minWidth="500px"
               p={3}
             >
               <Typography variant="h5"> Users</Typography>
-              <span>
-                {value.docs.map((doc) => (
-                  <React.Fragment key={doc.id}>
-                    <Box
-                      display="flex"
-                      width="100%"
-                      justifyContent="space-between"
-                    >
-                      <Typography>{doc.id}</Typography>
-                      <Typography>{doc.data().cert}</Typography>
-                    </Box>
-                  </React.Fragment>
-                ))}
-              </span>
+              {value.docs.map((doc) => (
+                <React.Fragment key={doc.id}>
+                  <Box
+                    display="flex"
+                    width="100%"
+                    justifyContent="space-between"
+                  >
+                    <Typography>{doc.id}</Typography>
+                    <Typography>{doc.data().cert}</Typography>
+                  </Box>
+                </React.Fragment>
+              ))}
             </Box>
             {loadingNeedAccess ? (
               <>Loading...</>
             ) : (
-              <span>
-                <List component="nav" aria-label="main mailbox folders">
-                  {needAccess.docs.map((doc, indx) => (
-                    <React.Fragment key={doc.id}>
-                      <ListItem
-                        button
-                        selected={selectedIndex === indx}
-                        onClick={(event) => handleListItemClick(event, indx)}
-                      >
-                        <Box
-                          display="flex"
-                          width="100%"
-                          justifyContent="space-between"
+              needAccess.docs.length > 0 && (
+                <span>
+                  <List component="nav" aria-label="main mailbox folders">
+                    {needAccess.docs.map((doc, indx) => (
+                      <React.Fragment key={doc.id}>
+                        <ListItem
+                          button
+                          selected={selectedIndex === indx}
+                          onClick={(event) => handleListItemClick(event, indx)}
                         >
-                          <Typography>{doc.id}</Typography>
-                        </Box>
-                      </ListItem>
+                          <Box
+                            display="flex"
+                            width="100%"
+                            justifyContent="space-between"
+                          >
+                            <Typography>{doc.id}</Typography>
+                          </Box>
+                        </ListItem>
 
-                      <Divider />
-                    </React.Fragment>
-                  ))}
-                </List>
-                <TextField
-                  onChange={(e) => setID(e.target.value)}
-                  value={id}
-                  className={classes.input}
-                  label="new id"
-                  placeholder="AA"
-                />
-                <Button
-                  disabled={disabled}
-                  onClick={() => {
-                    setDisabled(true);
-                    const db = firebase.firestore();
-                    // Get a new write batch
-                    var batch = db.batch();
-                    let certRef = db
-                      .collection("users")
-                      .doc(needAccess.docs[selectedIndex].id);
-                    batch.set(certRef, { cert: id });
+                        <Divider />
+                      </React.Fragment>
+                    ))}
+                  </List>
+                  <TextField
+                    onChange={(e) => setID(e.target.value)}
+                    value={id}
+                    className={classes.input}
+                    label="new id"
+                    placeholder="AA"
+                  />
+                  <Button
+                    disabled={disabled}
+                    onClick={() => {
+                      setDisabled(true);
+                      const db = firebase.firestore();
+                      // Get a new write batch
+                      var batch = db.batch();
+                      let certRef = db
+                        .collection("users")
+                        .doc(needAccess.docs[selectedIndex].id);
+                      batch.set(certRef, { cert: id });
 
-                    let deletetRef = db
-                      .collection("needAccess")
-                      .doc(needAccess.docs[selectedIndex].id);
-                    batch.delete(deletetRef);
+                      let deletetRef = db
+                        .collection("needAccess")
+                        .doc(needAccess.docs[selectedIndex].id);
+                      batch.delete(deletetRef);
 
-                    // Commit the batch
-                    batch.commit().then(() => {
-                      setDisabled(false);
-                      setID("");
-                    });
-                  }}
-                  color="primary"
-                  variant="contained"
-                >
-                  submit
-                </Button>
-              </span>
+                      // Commit the batch
+                      batch.commit().then(() => {
+                        setDisabled(false);
+                        setID("");
+                      });
+                    }}
+                    color="primary"
+                    variant="contained"
+                  >
+                    submit
+                  </Button>
+                </span>
+              )
             )}
           </Paper>
         </>
