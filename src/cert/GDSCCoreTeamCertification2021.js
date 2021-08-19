@@ -84,7 +84,7 @@ function SvgComponent({
         </g>
         <text
           x="106"
-          y="245"
+          y="241"
           fill="#4285f4"
           fontWeight="500"
           fontFamily="Roboto"
@@ -94,7 +94,7 @@ function SvgComponent({
         </text>
         <text
           x="106"
-          y="275"
+          y="271"
           fill="#5f6368"
           fontFamily={`'Open Sans'`}
           fontSize="16px"
@@ -103,22 +103,45 @@ function SvgComponent({
         </text>
         <text
           x="106"
-          y="298"
+          y="294"
           fill="#5f6368"
           fontFamily={`'Open Sans'`}
           fontSize="16px"
         >
           serving as a Google Developer Student Club Core Team Member at
         </text>
-        <text
-          x="106"
-          y="321"
-          fill="#5f6368"
-          fontFamily={`'Open Sans'`}
-          fontSize="16px"
-        >
-          {`${university} for the 2020 - 2021 academic year.`}
-        </text>
+        {university.length < 45 ? (
+          <text
+            x="106"
+            y="317"
+            fill="#5f6368"
+            fontFamily={`'Open Sans'`}
+            fontSize="16px"
+          >
+            {`${university} for the 2020 - 2021 academic year.`}
+          </text>
+        ) : (
+          <>
+            <text
+              x="106"
+              y="317"
+              fill="#5f6368"
+              fontFamily={`'Open Sans'`}
+              fontSize="16px"
+            >
+              {`${university}`}
+            </text>
+            <text
+              x="106"
+              y="340"
+              fill="#5f6368"
+              fontFamily={`'Open Sans'`}
+              fontSize="16px"
+            >
+              {`for the 2020 - 2021 academic year.`}
+            </text>
+          </>
+        )}
         <text
           x="106"
           y="430"
