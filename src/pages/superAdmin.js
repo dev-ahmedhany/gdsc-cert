@@ -95,7 +95,7 @@ export default function SuperAdmin({ user }) {
               minWidth="500px"
               p={3}
             >
-              <Typography variant="h5"> Users</Typography>
+              <Typography variant="h5"> Users {value.docs.length}</Typography>
               {value.docs.map((doc) => (
                 <React.Fragment key={doc.id}>
                   <Box
