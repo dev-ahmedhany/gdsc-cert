@@ -130,7 +130,7 @@ export default function Preview({ location }) {
               helperText={error && "only Letters and Numbers"}
               placeholder="certificate ID "
               inputProps={{
-                maxlength: "12",
+                maxLength: "12",
               }}
               InputProps={{
                 endAdornment: (
