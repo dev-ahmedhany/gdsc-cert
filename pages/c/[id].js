@@ -1,9 +1,10 @@
 import firebase from "firebase";
 import fs from "fs";
 import path from "path";
+import Cert from "../../components/cert";
 
 export default function C(props) {
-  return <div>{JSON.stringify(props)}</div>;
+  return <Cert {...props}></Cert>;
 }
 
 export async function getStaticProps(context) {
