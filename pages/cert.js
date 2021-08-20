@@ -67,7 +67,7 @@ export default function Cert() {
         </>
       ) : (
         <Head>
-          <meta http-equiv="refresh" content={`0; URL=/validate/${id}`} />
+          <meta httpEquiv="refresh" content={`0; URL=/validate/${id}`} />
         </Head>
       )}
     </Box>
