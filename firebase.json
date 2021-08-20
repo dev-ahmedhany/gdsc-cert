@@ -11,6 +11,10 @@
       {
         "source": "/c/**",
         "destination": "/cert.html"
+      },
+      {
+        "source": "/validate/**",
+        "destination": "/validate/[id].html"
       }
     ]
   }
