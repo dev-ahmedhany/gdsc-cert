@@ -7,6 +7,10 @@
       {
         "source": "/preview",
         "destination": "/admin.html"
+      },
+      {
+        "source": "/c/**",
+        "destination": "/cert.html"
       }
     ]
   }
