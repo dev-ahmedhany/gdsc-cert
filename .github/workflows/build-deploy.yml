@@ -26,7 +26,7 @@ jobs:
       run: npm ci
 
     - name: Build project
-      run: npm run build
+      run: npm run build && npm run export
 
     - name: Run tests
       run: npm run test
@@ -35,7 +35,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: production-files
-        path: ./build
+        path: ./out
 
   deploy:
     name: Deploy
