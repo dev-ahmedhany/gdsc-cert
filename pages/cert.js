@@ -4,6 +4,7 @@ import GDSCCoreTeamCertification2021 from "../components/cert/GDSCCoreTeamCertif
 import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
 import firebase from "firebase";
 const saveSvgAsPng = require("save-svg-as-png");
+import Head from "next/head";
 
 export default function Cert() {
   const id = window.location.pathname.split("/").pop();
@@ -65,8 +66,9 @@ export default function Cert() {
           </Box>
         </>
       ) : (
-        <>Not found</>
-        // <Redirect to={{ pathname: "/validate", state: { id: id } }} />
+        <Head>
+          <meta http-equiv="refresh" content={`0; URL=/validate/${id}`} />
+        </Head>
       )}
     </Box>
   );
