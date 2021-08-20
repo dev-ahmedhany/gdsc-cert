@@ -56,7 +56,9 @@ export async function getStaticPaths() {
     fs.writeFileSync(path.resolve("data.json"), JSON.stringify(data));
   } catch (error) {
     console.log("Error getting document:", error);
-    paths = JSON.parse(fs.readFileSync(path.resolve("data.json")));
+    JSON.parse(fs.readFileSync(path.resolve("data.json"))).forEach((doc)=>{
+      paths.push({ params: { id: doc.id } });
+    });
   }
   return {
     paths,
