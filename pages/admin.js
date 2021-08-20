@@ -16,36 +16,36 @@ export default function App() {
   return (
     <Router>
       <Box
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      style={{
-        background:
-          "radial-gradient(at 50% 100%, rgba(123, 22, 255, 0.75), rgb(15, 1, 94))",
-        minHeight: "100vh",
-      }}
-    >
-      <Particles
-        params={{
-          particles: {
-            number: {
-              value: 50,
-            },
-            size: {
-              value: 3,
-            },
-          },
-          interactivity: {
-            events: {
-              onhover: {
-                enable: true,
-                mode: "repulse",
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        style={{
+          background:
+            "radial-gradient(at 50% 100%, rgba(123, 22, 255, 0.75), rgb(15, 1, 94))",
+          minHeight: "100vh",
+        }}
+      >
+        <Particles
+          params={{
+            particles: {
+              number: {
+                value: 50,
+              },
+              size: {
+                value: 3,
               },
             },
-          },
-        }}
-      />
+            interactivity: {
+              events: {
+                onhover: {
+                  enable: true,
+                  mode: "repulse",
+                },
+              },
+            },
+          }}
+        />
         {loading ? (
           <></>
         ) : (
@@ -56,7 +56,7 @@ export default function App() {
             </Route>
           </Switch>
         )}
-        </Box>
+      </Box>
     </Router>
   );
 }
