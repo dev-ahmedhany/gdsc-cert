@@ -4,6 +4,7 @@ import GDSCCoreTeamCertification2021 from "../cert/GDSCCoreTeamCertification2021
 import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
 import firebase from "firebase";
 import { Redirect } from "react-router-dom";
+import { Helmet } from "react-helmet";
 const saveSvgAsPng = require("save-svg-as-png");
 
 export default function Cert({ match }) {
@@ -36,6 +37,13 @@ export default function Cert({ match }) {
         <>Loading...</>
       ) : value ? (
         <>
+          <Helmet>
+            <title>{`${value.name} - certificate`}</title>
+            <meta
+              name="description"
+              content={`${value.name} - core team 2020-2021 certificate`}
+            />
+          </Helmet>
           <GDSCCoreTeamCertification2021
             id={id}
             name={value.name}
