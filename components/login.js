@@ -10,36 +10,7 @@ export default function Login() {
   };
 
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      style={{
-        background:
-          "radial-gradient(at 50% 100%, rgba(123, 22, 255, 0.75), rgb(15, 1, 94))",
-        minHeight: "100vh",
-      }}
-    >
-      <Particles
-        params={{
-          particles: {
-            number: {
-              value: 50,
-            },
-            size: {
-              value: 3,
-            },
-          },
-          interactivity: {
-            events: {
-              onhover: {
-                enable: true,
-                mode: "repulse",
-              },
-            },
-          },
-        }}
-      />
+    <>
       <Button
         variant="contained"
         style={{
@@ -67,7 +38,7 @@ export default function Login() {
           Sign In With Google
         </h4>
       </Button>
-    </Box>
+    </>
   );
 }
 

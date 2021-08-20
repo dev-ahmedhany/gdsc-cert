@@ -1,11 +1,20 @@
 {
   "hosting": {
-    "public": "build",
+    "public": "out",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "cleanUrls": true,
     "rewrites": [
       {
-        "source": "**",
-        "destination": "/index.html"
+        "source": "/preview",
+        "destination": "/admin.html"
+      },
+      {
+        "source": "/c/**",
+        "destination": "/cert.html"
+      },
+      {
+        "source": "/validate/**",
+        "destination": "/validate/[id].html"
       }
     ]
   }

@@ -1,13 +1,9 @@
 import { React, useState } from "react";
-import Paper from "@material-ui/core/Paper";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Box from "@material-ui/core/Box";
+import { Box, Link, TextField, Button, Paper } from "@material-ui/core";
 import Particles from "react-particles-js";
-import { Link } from "react-router-dom";
 
-export default function OutlinedCard({ location }) {
-  const [value, setValue] = useState(location?.state?.id);
+export default function Validate() {
+  const [value, setValue] = useState(window?.location?.pathname?.split("/").pop() || "");
 
   return (
     <Box
@@ -59,7 +55,7 @@ export default function OutlinedCard({ location }) {
           />
 
           <Box m={3} display="flex" justifyContent="flex-end">
-            <Link to={`/c/${value}`}>
+            <Link href={`/c/${value}`}>
               <Button variant="contained" color="primary">
                 Validate
               </Button>

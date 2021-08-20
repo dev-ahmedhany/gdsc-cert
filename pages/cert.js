@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { Box, Button } from "@material-ui/core";
-import GDSCCoreTeamCertification2021 from "../cert/GDSCCoreTeamCertification2021";
+import GDSCCoreTeamCertification2021 from "../components/cert/GDSCCoreTeamCertification2021";
 import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
 import firebase from "firebase";
-import { Redirect } from "react-router-dom";
-import { Helmet } from "react-helmet";
 const saveSvgAsPng = require("save-svg-as-png");
+import Head from "next/head";
 
-export default function Cert({ match }) {
-  const id = match.params.id;
+export default function Cert() {
+  const id = window.location.pathname.split("/").pop();
   const [value, loading] = useDocumentDataOnce(
     firebase
       .firestore()
@@ -37,13 +36,6 @@ export default function Cert({ match }) {
         <>Loading...</>
       ) : value ? (
         <>
-          <Helmet>
-            <title>{`${value.name} - certificate`}</title>
-            <meta
-              name="description"
-              content={`${value.name} - core team 2020-2021 certificate`}
-            />
-          </Helmet>
           <GDSCCoreTeamCertification2021
             id={id}
             name={value.name}
@@ -74,7 +66,9 @@ export default function Cert({ match }) {
           </Box>
         </>
       ) : (
-        <Redirect to={{ pathname: "/validate", state: { id: id } }} />
+        <Head>
+          <meta httpEquiv="refresh" content={`0; URL=/validate/${id}`} />
+        </Head>
       )}
     </Box>
   );

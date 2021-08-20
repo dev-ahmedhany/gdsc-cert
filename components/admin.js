@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { TextField, Paper, Box, Typography, Button } from "@material-ui/core";
 import firebase from "firebase/app";
 import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
-import Particles from "react-particles-js";
 import { Link, useLocation } from "react-router-dom";
 import Preview from "./preview";
 
@@ -64,37 +63,7 @@ export default function Admin({ user }) {
   };
 
   return location.pathname === "/admin" ? (
-    <Box
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      style={{
-        background:
-          "radial-gradient(at 50% 100%, rgba(123, 22, 255, 0.75), rgb(15, 1, 94))",
-        minHeight: "100vh",
-      }}
-    >
-      <Particles
-        params={{
-          particles: {
-            number: {
-              value: 50,
-            },
-            size: {
-              value: 3,
-            },
-          },
-          interactivity: {
-            events: {
-              onhover: {
-                enable: true,
-                mode: "repulse",
-              },
-            },
-          },
-        }}
-      />
+    <>
       {loading ? (
         <>Loading...</>
       ) : prefix ? (
@@ -254,7 +223,7 @@ export default function Admin({ user }) {
           </Button>
         </>
       )}
-    </Box>
+    </>
   ) : (
     <Preview location={location} />
   );

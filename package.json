@@ -1,62 +1,32 @@
 {
-  "name": "my-app",
+  "name": "gdsc-cert",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export",
+    "format": "prettier --write \"./**/*.{js,jsx,json,tsx}\"",
+    "lint": "next lint"
+  },
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^11.2.7",
     "firebase": "^8.10.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "fs": "^0.0.1-security",
+    "next": "11.1.0",
+    "path": "^0.12.7",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
     "react-firebase-hooks": "^3.0.4",
-    "react-helmet": "^6.1.0",
     "react-particles-js": "^3.5.3",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.3",
     "react-tsparticles": "^1.33.3",
-    "save-svg-as-png": "^1.4.17",
-    "web-vitals": "^1.1.2"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "format": "prettier --write \"./**/*.{js,jsx,json,tsx}\"",
-    "lint": "eslint ./src"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "save-svg-as-png": "^1.4.17"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.29.2",
-    "@typescript-eslint/parser": "^4.29.2",
-    "babel-eslint": "^10.1.0",
-    "eslint-config-react-app": "^6.0.0",
-    "eslint-plugin-flowtype": "^5.9.0",
-    "eslint-plugin-import": "^2.24.1",
-    "eslint-plugin-jest": "^24.4.0",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-react": "^7.24.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "eslint-plugin-testing-library": "^4.11.0",
-    "prettier": "^2.3.2"
+    "eslint": "7.32.0",
+    "eslint-config-next": "11.1.0"
   }
 }
