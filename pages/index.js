@@ -10,20 +10,20 @@ export default function Home() {
         <p className={styles.description}>Certificates🎉</p>
 
         <div className={styles.grid}>
-          <Link href="/validate/" className={styles.card}>
-            <a>
+          <Link href="/validate/">
+            <a className={styles.card}>
               <h2>Validate Certificate &rarr;</h2>
               <p>Verify the authenticity of certificate by it&apos;s code </p>
             </a>
           </Link>
-          <Link passHref href="/preview" className={styles.card}>
-            <a>
+          <Link passHref href="/preview">
+            <a className={styles.card}>
               <h2>Preview Certificate &rarr;</h2>
               <p>Add names on certificates and see how it looks</p>
             </a>
           </Link>
-          <Link passHref href="/admin" className={styles.card}>
-            <a>
+          <Link passHref href="/admin">
+            <a className={styles.card}>
               <h2>Create Certificates &rarr;</h2>
               <p>For Google Develeloper Student Clubs Leads Only</p>
             </a>
