@@ -7,14 +7,15 @@ export default function Cert(params) {
   const [width, setWidth] = useState(null);
   useEffect(() => {
     if (typeof window !== "undefined") {
-      setWidth(window.innerWidth * 0.9);
+      setWidth(window.innerWidth);
     }
   }, []);
 
-  return (
+  return width ? (
     <Box
       pt={3}
       style={{
+        width,
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -24,32 +25,31 @@ export default function Cert(params) {
         backgroundImage: `url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjOWU5ZTllIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=")`,
       }}
     >
-      {width ? (
-        <>
-          <GDSCCoreTeamCertification2021 {...params} style={{ width }} />
-          <Box m={5}>
-            <Button
-              color="primary"
-              variant="contained"
-              onClick={() => {
-                saveSvgAsPng.saveSvgAsPng(
-                  document.getElementById("certificate"),
-                  "certificate.png",
-                  {
-                    scale: 2,
-                    encoderOptions: 1,
-                    backgroundColor: "white",
-                  }
-                );
-              }}
-            >
-              Download
-            </Button>
-          </Box>
-        </>
-      ) : (
-        <></>
-      )}
+      <GDSCCoreTeamCertification2021
+        {...params}
+        style={{ width: width * 0.9 }}
+      />
+      <Box m={5}>
+        <Button
+          color="primary"
+          variant="contained"
+          onClick={() => {
+            saveSvgAsPng.saveSvgAsPng(
+              document.getElementById("certificate"),
+              "certificate.png",
+              {
+                scale: 2,
+                encoderOptions: 1,
+                backgroundColor: "white",
+              }
+            );
+          }}
+        >
+          Download
+        </Button>
+      </Box>
     </Box>
+  ) : (
+    <></>
   );
 }
