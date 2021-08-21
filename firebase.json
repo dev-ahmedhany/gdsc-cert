@@ -5,6 +5,10 @@
     "cleanUrls": true,
     "rewrites": [
       {
+        "source": "/ahmed",
+        "destination": "/admin.html"
+      },
+      {
         "source": "/preview",
         "destination": "/admin.html"
       },
