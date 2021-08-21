@@ -1,61 +1,41 @@
-import Head from "next/head";
+import GDSC from "../components/GDSC";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{" "}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+        <GDSC />
+        <p className={styles.description}>Certificates🎉</p>
 
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
+          <a href="/validate/" className={styles.card}>
+            <h2>Validate Certificate &rarr;</h2>
+            <p>Verify the authenticity of certificate by it's code </p>
           </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
+          <a href="/preview" className={styles.card}>
+            <h2>Preview Certificate &rarr;</h2>
+            <p>Add names on certificates and see how it looks</p>
           </a>
-
+          <a href="/admin" className={styles.card}>
+            <h2>Create Certificates &rarr;</h2>
+            <p>For Google Develeloper Student Clubs Leads Only</p>
+          </a>
           <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
+            href="https://www.linkedin.com/in/dev-ahmedhany/"
             className={styles.card}
           >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
+            <h2>More About &rarr;</h2>
+            <p>Contant The Developer and Check more Projects</p>
           </a>
         </div>
       </main>
 
       <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <span className={styles.logo}>
-            {/* <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} /> */}
-          </span>
-        </a>
+        <h1 className={styles.title}>
+          made with 💖 by{" "}
+          <a href="https://github.com/dev-ahmedhany">Ahmed Hany</a>
+        </h1>
       </footer>
     </div>
   );
