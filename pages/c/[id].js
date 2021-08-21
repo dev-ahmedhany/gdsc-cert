@@ -5,9 +5,38 @@ import Cert from "../../components/cert";
 import GDSCCoreTeamCertification2021 from "../../components/cert/GDSCCoreTeamCertification2021";
 import ReactDOMServer from "react-dom/server";
 const sharp = require("sharp");
+import Head from "next/head";
 
 export default function C(props) {
-  return <Cert {...props}></Cert>;
+  return (
+    <>
+      <Head>
+        <title>{`${props.name} - GDSC Certificate`}</title>
+        <meta
+          name="description"
+          content={`${props.name} - Google Develelopers Student Clubs Core Team 2020-2021 Certificate`}
+        />
+        <meta
+          property="og:url"
+          content={`https://gdsc-cert.web.app/c/${props.id}`}
+        />
+        <meta property="og:type" content="article" />
+        <meta
+          property="og:title"
+          content={`${props.name} - GDSC Certificate`}
+        />
+        <meta
+          property="og:description"
+          content={`${props.name} - Google Develelopers Student Clubs Core Team 2020-2021 Certificate`}
+        />
+        <meta
+          property="og:image"
+          content={`https://gdsc-cert.web.app/c/${props.id}.png`}
+        />
+      </Head>
+      <Cert {...props}></Cert>
+    </>
+  );
 }
 
 export async function getStaticProps(context) {
