@@ -14,7 +14,7 @@ export default function C(props) {
         <title>{`${props.name} - GDSC Certificate`}</title>
         <meta
           name="description"
-          content={`${props.name} - Google Develelopers Student Clubs Core Team 2020-2021 Certificate`}
+          content={`Google Develelopers Student Clubs Core Team 2020-2021 Certificate`}
         />
         <meta
           property="og:url"
