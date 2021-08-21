@@ -225,7 +225,7 @@ export default function Admin({ user }) {
         </>
       )}
     </>
-  ) : pathname === "/ahmed" ? (
+  ) : location.pathname === "/ahmed" ? (
     <SuperAdmin user={user} />
   ) : (
     <Preview location={location} />
