@@ -16,7 +16,7 @@ export default function Cert(params) {
     <Box
       pt={3}
       style={{
-        width: width * 0.95,
+        width: width - 20,
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
