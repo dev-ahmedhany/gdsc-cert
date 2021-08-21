@@ -67,23 +67,30 @@ export async function getStaticPaths() {
 
   const data = [];
   const paths = [];
-  try {
-    const db = firebase.firestore();
-    var docRef = db.collectionGroup("core21");
-    const querySnapshot = await docRef.get();
-    querySnapshot.forEach((doc) => {
-      paths.push({ params: { id: doc.id } });
-      data.push({ id: doc.id, ...doc.data() });
-    });
-    if (paths.length === 0) {
-      throw "empty list";
-    }
-    fs.writeFileSync(path.resolve("data.json"), JSON.stringify(data));
-  } catch (error) {
-    console.log("Error getting document:", error);
+
+  if (true) {
     JSON.parse(fs.readFileSync(path.resolve("data.json"))).forEach((doc) => {
       paths.push({ params: { id: doc.id } });
     });
+  } else {
+    try {
+      const db = firebase.firestore();
+      var docRef = db.collectionGroup("core21");
+      const querySnapshot = await docRef.get();
+      querySnapshot.forEach((doc) => {
+        paths.push({ params: { id: doc.id } });
+        data.push({ id: doc.id, ...doc.data() });
+      });
+      if (paths.length === 0) {
+        throw "empty list";
+      }
+      fs.writeFileSync(path.resolve("data.json"), JSON.stringify(data));
+    } catch (error) {
+      console.log("Error getting document:", error);
+      JSON.parse(fs.readFileSync(path.resolve("data.json"))).forEach((doc) => {
+        paths.push({ params: { id: doc.id } });
+      });
+    }
   }
   return {
     paths,

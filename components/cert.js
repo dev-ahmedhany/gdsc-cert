@@ -4,7 +4,7 @@ import GDSCCoreTeamCertification2021 from "./cert/GDSCCoreTeamCertification2021"
 const saveSvgAsPng = require("save-svg-as-png");
 
 export default function Cert(params) {
-  const [width, setWidth] = useState(300);
+  const [width, setWidth] = useState(null);
   useEffect(() => {
     if (typeof window !== "undefined") {
       setWidth(window.innerWidth * 0.9);
@@ -15,37 +15,41 @@ export default function Cert(params) {
     <Box
       pt={3}
       style={{
-        display:"flex",
-        flexDirection:"column",
-        justifyContent:"center",
-        alignItems:"center",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
         minHeight: "100vh",
         backgroundColor: "#9e9e9e",
         backgroundImage: `url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjOWU5ZTllIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=")`,
       }}
     >
-      <>
-        <GDSCCoreTeamCertification2021 {...params} style={{ width }} />
-        <Box m={5}>
-          <Button
-            color="primary"
-            variant="contained"
-            onClick={() => {
-              saveSvgAsPng.saveSvgAsPng(
-                document.getElementById("certificate"),
-                "certificate.png",
-                {
-                  scale: 2,
-                  encoderOptions: 1,
-                  backgroundColor: "white",
-                }
-              );
-            }}
-          >
-            Download
-          </Button>
-        </Box>
-      </>
+      {width ? (
+        <>
+          <GDSCCoreTeamCertification2021 {...params} style={{ width }} />
+          <Box m={5}>
+            <Button
+              color="primary"
+              variant="contained"
+              onClick={() => {
+                saveSvgAsPng.saveSvgAsPng(
+                  document.getElementById("certificate"),
+                  "certificate.png",
+                  {
+                    scale: 2,
+                    encoderOptions: 1,
+                    backgroundColor: "white",
+                  }
+                );
+              }}
+            >
+              Download
+            </Button>
+          </Box>
+        </>
+      ) : (
+        <></>
+      )}
     </Box>
   );
 }
