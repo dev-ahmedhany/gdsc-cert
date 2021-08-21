@@ -3,7 +3,9 @@ import { Box, Link, TextField, Button, Paper } from "@material-ui/core";
 import Particles from "react-particles-js";
 
 export default function Validate() {
-  const [value, setValue] = useState(window?.location?.pathname?.split("/").pop() || "");
+  const [value, setValue] = useState(
+    window?.location?.pathname?.split("/").pop() || ""
+  );
 
   return (
     <Box

@@ -20,13 +20,6 @@ export default function Cert(params) {
       }}
     >
       <>
-        {/* <Helmet>
-            <title>{`${value.name} - certificate`}</title>
-            <meta
-              name="description"
-              content={`${value.name} - core team 2020-2021 certificate`}
-            />
-          </Helmet> */}
         <GDSCCoreTeamCertification2021 {...params} style={{ width }} />
         <Box m={5}>
           <Button
