@@ -1,5 +1,6 @@
 import GDSC from "../components/GDSC";
 import styles from "../styles/Home.module.css";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -9,18 +10,24 @@ export default function Home() {
         <p className={styles.description}>Certificates🎉</p>
 
         <div className={styles.grid}>
-          <a href="/validate/" className={styles.card}>
-            <h2>Validate Certificate &rarr;</h2>
-            <p>Verify the authenticity of certificate by it&apos;s code </p>
-          </a>
-          <a href="/preview" className={styles.card}>
-            <h2>Preview Certificate &rarr;</h2>
-            <p>Add names on certificates and see how it looks</p>
-          </a>
-          <a href="/admin" className={styles.card}>
-            <h2>Create Certificates &rarr;</h2>
-            <p>For Google Develeloper Student Clubs Leads Only</p>
-          </a>
+          <Link href="/validate/" className={styles.card}>
+            <a>
+              <h2>Validate Certificate &rarr;</h2>
+              <p>Verify the authenticity of certificate by it&apos;s code </p>
+            </a>
+          </Link>
+          <Link passHref href="/preview" className={styles.card}>
+            <a>
+              <h2>Preview Certificate &rarr;</h2>
+              <p>Add names on certificates and see how it looks</p>
+            </a>
+          </Link>
+          <Link passHref href="/admin" className={styles.card}>
+            <a>
+              <h2>Create Certificates &rarr;</h2>
+              <p>For Google Develeloper Student Clubs Leads Only</p>
+            </a>
+          </Link>
           <a
             href="https://www.linkedin.com/in/dev-ahmedhany/"
             className={styles.card}
