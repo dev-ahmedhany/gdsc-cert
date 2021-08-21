@@ -59,7 +59,7 @@ function Routes() {
         ) : (
           <Switch>
             {/* Make Sur to add the Route at firebase.json */}
-            <Route exact path={["/admin", "/preview"]}>
+            <Route exact path={["/admin", "/preview", "/ahmed"]}>
               {user?.email ? <Admin user={user} /> : <Login />}
             </Route>
           </Switch>

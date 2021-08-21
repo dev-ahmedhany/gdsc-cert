@@ -5,6 +5,7 @@ import firebase from "firebase/app";
 import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
 import { Link, useLocation } from "react-router-dom";
 import Preview from "./preview";
+import SuperAdmin from "./superAdmin"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -224,7 +225,9 @@ export default function Admin({ user }) {
         </>
       )}
     </>
-  ) : (
+  ) : pathname === "/ahmed" ? (
+    <SuperAdmin user={user} />
+    ) :(
     <Preview location={location} />
   );
 }
