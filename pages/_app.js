@@ -15,11 +15,7 @@ if (!firebase.apps.length) {
 }
 
 function MyApp({ Component, pageProps }) {
-  return (
-    <div suppressHydrationWarning>
-      {typeof window === "undefined" ? null : <Component {...pageProps} />}
-    </div>
-  );
+  return <Component {...pageProps} />;
 }
 
 export default MyApp;

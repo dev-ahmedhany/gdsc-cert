@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Button } from "@material-ui/core";
 import GDSCCoreTeamCertification2021 from "./cert/GDSCCoreTeamCertification2021";
 const saveSvgAsPng = require("save-svg-as-png");
 
 export default function Cert(params) {
-  const [width] = useState(window.innerWidth * 0.9);
+  const [width, setWidth] = useState(300);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setWidth(window.innerWidth * 0.9);
+    }
+  }, []);
 
   return (
     <Box

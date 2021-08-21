@@ -12,6 +12,14 @@ import Particles from "react-particles-js";
 const auth = firebase.auth();
 
 export default function App() {
+  return (
+    <div suppressHydrationWarning>
+      {typeof window === "undefined" ? null : <Routes />}
+    </div>
+  );
+}
+
+function Routes() {
   const [user, loading] = useAuthState(auth);
   return (
     <Router>

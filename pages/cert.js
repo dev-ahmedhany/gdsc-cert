@@ -1,23 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Button } from "@material-ui/core";
 import GDSCCoreTeamCertification2021 from "../components/cert/GDSCCoreTeamCertification2021";
-import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
-import firebase from "firebase";
+import firebase from "firebase/app";
+import "firebase/firestore";
 const saveSvgAsPng = require("save-svg-as-png");
 import Head from "next/head";
 
 export default function Cert() {
-  const id = window.location.pathname.split("/").pop();
-  const [value, loading] = useDocumentDataOnce(
-    firebase
-      .firestore()
-      .collection("cert")
-      .doc(id.substring(0, 2))
-      .collection("core21")
-      .doc(id)
-  );
+  const [id, setID] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [value, setValue] = useState({});
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const id = window.location.pathname.split("/").pop();
+      setID(id);
+      firebase
+        .firestore()
+        .collection("cert")
+        .doc(id.substring(0, 2))
+        .collection("core21")
+        .doc(id)
+        .get()
+        .then((doc) => {
+          setValue(doc.data());
+          setLoading(false);
+        });
+    }
+  }, []);
 
-  const [width] = useState(window.innerWidth * 0.9);
+  const [width, setWidth] = useState(300);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setWidth(window.innerWidth * 0.9);
+    }
+  }, []);
 
   return (
     <Box

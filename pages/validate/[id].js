@@ -1,11 +1,14 @@
-import { React, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Link, TextField, Button, Paper } from "@material-ui/core";
 import Particles from "react-particles-js";
 
 export default function Validate() {
-  const [value, setValue] = useState(
-    window?.location?.pathname?.split("/").pop() || ""
-  );
+  const [value, setValue] = useState("");
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setValue(window.location.pathname.split("/").pop());
+    }
+  }, []);
 
   return (
     <Box
