@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Button } from "@material-ui/core";
 import GDSCCoreTeamCertification2021 from "./cert/GDSCCoreTeamCertification2021";
+import Head from "next/head";
 const saveSvgAsPng = require("save-svg-as-png");
 
 export default function Cert(params) {
@@ -15,16 +16,21 @@ export default function Cert(params) {
     <Box
       pt={3}
       style={{
-        width,
+        width: width * 0.95,
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
         minHeight: "100vh",
-        backgroundColor: "#9e9e9e",
-        backgroundImage: `url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjOWU5ZTllIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=")`,
       }}
     >
+      <Head>
+        <style>
+          {
+            'body { background-color: #9e9e9e; background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjOWU5ZTllIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4="); }'
+          }
+        </style>
+      </Head>
       <GDSCCoreTeamCertification2021
         {...params}
         style={{ width: width * 0.9 }}
