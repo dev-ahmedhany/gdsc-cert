@@ -10,7 +10,7 @@ export default function Home() {
         <p className={styles.description}>Certificates🎉</p>
 
         <div className={styles.grid}>
-          <Link href="/validate/">
+          <Link href="/validate">
             <a className={styles.card}>
               <h2>Validate Certificate &rarr;</h2>
               <p>Verify the authenticity of certificate by it&apos;s code </p>

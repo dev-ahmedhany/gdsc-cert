@@ -19,6 +19,10 @@
       {
         "source": "/validate/**",
         "destination": "/validate/[id].html"
+      },
+      {
+        "source": "/validate",
+        "destination": "/validate/[id].html"
       }
     ]
   }
