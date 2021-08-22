@@ -6,7 +6,8 @@ export default function Validate() {
   const [value, setValue] = useState("");
   useEffect(() => {
     if (typeof window !== "undefined") {
-      setValue(window.location.pathname.split("/").pop());
+      const id = window.location.pathname.split("/").pop();
+      setValue(id === "validate" ? "" : id);
     }
   }, []);
 
