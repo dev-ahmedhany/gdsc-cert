@@ -3,6 +3,7 @@ import "../styles/globals.css";
 import firebase from "firebase/app";
 import "firebase/analytics";
 import Head from "next/head";
+import { useEffect } from "react";
 
 if (!firebase.apps.length) {
   firebase.initializeApp({
@@ -16,11 +17,11 @@ if (!firebase.apps.length) {
   });
 }
 
-if(typeof window != undefined){
-  firebase.analytics()
-}
-
 function MyApp({ Component, pageProps }) {
+  useEffect(() => {
+    firebase.analytics();
+  }, []);
+
   return (
     <>
       <Head>

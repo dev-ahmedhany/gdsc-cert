@@ -3,21 +3,21 @@ module.exports = {
   async rewrites() {
     return [
       {
-        "source": "/ahmed",
-        "destination": "/admin"
+        source: "/ahmed",
+        destination: "/admin",
       },
       {
         source: "/preview",
         destination: "/admin",
       },
       {
-        "source": "/c/:id",
-        "destination": "/cert"
+        source: "/c/:id",
+        destination: "/cert",
       },
       {
-        source: '/validate/:id',
-        destination: '/validate',
-      }
+        source: "/validate/:id",
+        destination: "/validate",
+      },
     ];
   },
 };
