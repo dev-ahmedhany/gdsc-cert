@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 
 import firebase from "firebase/app";
+import "firebase/analytics";
 import Head from "next/head";
 
 if (!firebase.apps.length) {
@@ -14,6 +15,8 @@ if (!firebase.apps.length) {
     measurementId: "G-F8N65XRGYD",
   });
 }
+
+const analytics = firebase.analytics();
 
 function MyApp({ Component, pageProps }) {
   return (
