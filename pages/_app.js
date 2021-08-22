@@ -16,7 +16,9 @@ if (!firebase.apps.length) {
   });
 }
 
-const analytics = firebase.analytics();
+if(typeof window != undefined){
+  firebase.analytics()
+}
 
 function MyApp({ Component, pageProps }) {
   return (
