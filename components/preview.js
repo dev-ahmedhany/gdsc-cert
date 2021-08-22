@@ -161,7 +161,7 @@ export default function Preview({ location }) {
           date={date}
           leadUniversity={leadUniversity}
           style={{ width }}
-          />
+        />
       </Box>
     </>
   );

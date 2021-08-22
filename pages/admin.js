@@ -34,26 +34,28 @@ function Routes() {
           minHeight: "100vh",
         }}
       >
-        <Particles
-          params={{
-            particles: {
-              number: {
-                value: 50,
-              },
-              size: {
-                value: 3,
-              },
-            },
-            interactivity: {
-              events: {
-                onhover: {
-                  enable: true,
-                  mode: "repulse",
+        {typeof window !== "undefined" && (
+          <Particles
+            params={{
+              particles: {
+                number: {
+                  value: 50,
+                },
+                size: {
+                  value: 3,
                 },
               },
-            },
-          }}
-        />
+              interactivity: {
+                events: {
+                  onhover: {
+                    enable: true,
+                    mode: "repulse",
+                  },
+                },
+              },
+            }}
+          />
+        )}
         {loading ? (
           <></>
         ) : (
