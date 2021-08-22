@@ -152,7 +152,7 @@ export default function Preview({ location }) {
           </Link>
         </Box>
       </Paper>
-      <Box mb={2} style={{width: width - 20}}>
+      <Box mb={2}>
         <GDSCCoreTeamCertification2021
           id={certCode}
           name={name}

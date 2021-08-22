@@ -63,6 +63,8 @@ export default function Admin({ user }) {
     return text;
   };
 
+  const timeLeft = (26 - new Date().getUTCHours()) % 24;
+
   return location.pathname === "/admin" ? (
     <>
       {loading ? (
@@ -196,12 +198,28 @@ export default function Admin({ user }) {
                   </Box>
                 </>
               ) : (
-                <TextField
-                  label="Results"
-                  value={result}
-                  multiline
-                  className={classes.input}
-                />
+                <>
+                  <Typography>
+                    <br />
+                    Make Sure to copy these links
+                    <br />
+                    currently no way to get them back
+                    <br />
+                    <br />
+                    Url Preview will work after {timeLeft === 0
+                      ? 24
+                      : timeLeft}{" "}
+                    hour/s
+                    <br />
+                    Please wait then send the certificates
+                  </Typography>
+                  <TextField
+                    label="Results"
+                    value={result}
+                    multiline
+                    className={classes.input}
+                  />
+                </>
               )}
             </Box>
           </Paper>
