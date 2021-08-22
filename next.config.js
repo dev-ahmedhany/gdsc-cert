@@ -6,6 +6,10 @@ module.exports = {
         source: "/preview",
         destination: "/admin",
       },
+      {
+        source: '/validate/:id',
+        destination: '/validate',
+      }
     ];
   },
 };
