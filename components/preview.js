@@ -152,15 +152,17 @@ export default function Preview({ location }) {
           </Link>
         </Box>
       </Paper>
-      <GDSCCoreTeamCertification2021
-        id={certCode}
-        name={name}
-        university={university}
-        signature={signature}
-        date={date}
-        leadUniversity={leadUniversity}
-        style={{ width }}
-      />
+      <Box mb={2} style={{width: width - 20}}>
+        <GDSCCoreTeamCertification2021
+          id={certCode}
+          name={name}
+          university={university}
+          signature={signature}
+          date={date}
+          leadUniversity={leadUniversity}
+          style={{ width }}
+          />
+      </Box>
     </>
   );
 }
