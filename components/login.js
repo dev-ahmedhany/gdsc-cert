@@ -6,7 +6,14 @@ import firebase from "firebase/app";
 export default function Login() {
   const signInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(provider);
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .catch((e) => {
+        if (e.code == "auth/popup-blocked") {
+          firebase.auth().signInWithRedirect(provider);
+        }
+      });
   };
 
   return (
