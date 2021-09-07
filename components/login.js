@@ -10,7 +10,7 @@ export default function Login() {
       .auth()
       .signInWithPopup(provider)
       .catch((e) => {
-        if (e.code == "auth/popup-blocked") {
+        if (e.code === "auth/popup-blocked") {
           firebase.auth().signInWithRedirect(provider);
         }
       });
