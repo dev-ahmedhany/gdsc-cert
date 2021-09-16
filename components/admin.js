@@ -46,10 +46,22 @@ export default function Admin({ user }) {
   const [names, setNames] = useState("");
   const [result, setResult] = useState("");
   const [disabled, setDisabled] = useState(false);
-  const [university, setUniversity] = useState("");
-  const [signature, setSignature] = useState("");
-  const [date, setDate] = useState("");
-  const [leadUniversity, setLeadUniversity] = useState("");
+  const [university, setUniversity] = useState("Aswan University");
+  const [title, setTitle] = useState("2020 - 2021 GDSC Core Team Member");
+  const [line2, setLine2] = useState(
+    "serving as a Google Developer Student Club Core Team Member at"
+  );
+  const [signature, setSignature] = useState("Ahmed Hany");
+  const [date, setDate] = useState(
+    new Date().toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    })
+  );
+  const [leadUniversity, setLeadUniversity] = useState(
+    "Google Developer Student Clubs Lead, Aswan University"
+  );
 
   const classes = useStyles();
 
@@ -81,6 +93,15 @@ export default function Admin({ user }) {
               <Typography variant="h5"> Create new certificates</Typography>
               {!result ? (
                 <>
+                  <TextField
+                    onChange={(e) => {
+                      setTitle(e.target.value);
+                    }}
+                    value={title}
+                    className={classes.input}
+                    label="title"
+                    placeholder="2020 - 2021 GDSC Core Team Member"
+                  />
                   <TextField
                     onChange={(e) => {
                       setUniversity(e.target.value);
@@ -120,6 +141,15 @@ export default function Admin({ user }) {
                     className={classes.input}
                     label="Position"
                     placeholder="Google Developer Student Clubs Lead, Aswan University"
+                  />
+                  <TextField
+                    onChange={(e) => {
+                      setLine2(e.target.value);
+                    }}
+                    value={line2}
+                    className={classes.input}
+                    label="Line2"
+                    placeholder="serving as a Google Developer Student Club Core Team Member at"
                   />
                   <TextField
                     onChange={(e) => {
@@ -172,6 +202,8 @@ export default function Admin({ user }) {
                                 throw new Error("Document does exist!");
                               }
                               transaction.set(certRef, {
+                                title,
+                                line2,
                                 name,
                                 university,
                                 signature,

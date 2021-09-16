@@ -45,6 +45,10 @@ export default function Preview({ location }) {
   const [signature, setSignature] = useState(
     location?.state?.signature || "Signature Here"
   );
+  const [title, setTitle] = useState("2020 - 2021 GDSC Core Team Member");
+  const [line2, setLine2] = useState(
+    "serving as a Google Developer Student Club Core Team Member at"
+  );
   const [date, setDate] = useState(location?.state?.date || "July 23, 2021");
   const [leadUniversity, setLeadUniversity] = useState(
     location?.state?.leadUniversity || "[GDSC Lead Name, University Name]"
@@ -79,6 +83,15 @@ export default function Preview({ location }) {
       <Paper style={{ margin: "50px" }} elevation={10}>
         <Box flexDirection="column" display="flex" alignItems="center" p={3}>
           <Typography variant="h5"> Preview new certificate</Typography>
+          <TextField
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+            value={title}
+            className={classes.input}
+            label="title"
+            placeholder="2020 - 2021 GDSC Core Team Member"
+          />
           <TextField
             onChange={(e) => {
               setName(e.target.value);
@@ -118,6 +131,15 @@ export default function Preview({ location }) {
             value={leadUniversity}
             className={classes.input}
             placeholder="leadUniversity"
+          />
+          <TextField
+            onChange={(e) => {
+              setLine2(e.target.value);
+            }}
+            value={line2}
+            className={classes.input}
+            label="Line2"
+            placeholder="serving as a Google Developer Student Club Core Team Member at"
           />
           <Paper className={classes.textBox}>
             <TextField
@@ -161,6 +183,8 @@ export default function Preview({ location }) {
           date={date}
           leadUniversity={leadUniversity}
           style={{ width }}
+          title={title}
+          line2={line2}
         />
       </Box>
     </>
