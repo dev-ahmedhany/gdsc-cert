@@ -312,8 +312,8 @@ function SvgComponent({
           <>
             <path
               stroke="#595959"
-              stroke-linejoin="round"
-              stroke-linecap="butt"
+              strokeLinejoin="round"
+              strokeLinecap="butt"
               d="M460 436.986h100.488"
             ></path>
             <text
