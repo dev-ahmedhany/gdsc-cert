@@ -1,45 +1,13 @@
-import React, { useEffect, useState } from "react";
-import firebase from "firebase/app";
-import "firebase/firestore";
+import React from "react";
 import Head from "next/head";
-import Cert from "../components/cert";
 
 export default function CertPage() {
-  const [id, setID] = useState("");
-  const [loading, setLoading] = useState(true);
-  const [value, setValue] = useState({});
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const id = window.location.pathname.split("/").pop();
-      setID(id);
-      firebase
-        .firestore()
-        .collection("cert")
-        .doc(id.substring(0, 2))
-        .collection("core21")
-        .doc(id)
-        .get()
-        .then((doc) => {
-          setValue(doc.data());
-          setLoading(false);
-        });
-    }
-  }, []);
 
-  const [width, setWidth] = useState(300);
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setWidth(window.innerWidth * 0.9);
-    }
-  }, []);
-
-  return loading ? (
-    <>Loading...</>
-  ) : value ? (
-    <Cert id={id} {...value} />
-  ) : (
+  return  typeof window !== "undefined" ? (
     <Head>
-      <meta httpEquiv="refresh" content={`0; URL=/validate/${id}`} />
+      <meta httpEquiv="refresh" content={`0; URL=/certificate?id=${window.location.pathname.split("/").pop()}`} />
     </Head>
+  ):(
+    <></>
   );
 }
