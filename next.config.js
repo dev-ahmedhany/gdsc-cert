@@ -2,7 +2,7 @@ module.exports = {
   reactStrictMode: true,
   async rewrites() {
     return {
-      fallback:[
+      afterFiles:[
         {
           source: "/ahmed",
           destination: "/admin",
