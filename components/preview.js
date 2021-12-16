@@ -40,7 +40,8 @@ export default function Preview({ location }) {
     location?.state?.name || "Firstname Lastname"
   );
   const [line3, setLine3] = useState(
-    location?.state?.line3 || "Aswan University for the 2020 - 2021 academic year."
+    location?.state?.line3 ||
+      "Aswan University for the 2020 - 2021 academic year."
   );
   const [signature, setSignature] = useState(
     location?.state?.signature || "Signature Here"

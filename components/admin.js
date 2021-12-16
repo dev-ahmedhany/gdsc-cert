@@ -46,7 +46,9 @@ export default function Admin({ user }) {
   const [names, setNames] = useState("");
   const [result, setResult] = useState("");
   const [disabled, setDisabled] = useState(false);
-  const [line3, setLine3] = useState("Aswan University for the 2020 - 2021 academic year.");
+  const [line3, setLine3] = useState(
+    "Aswan University for the 2020 - 2021 academic year."
+  );
   const [title, setTitle] = useState("2020 - 2021 GDSC Core Team Member");
   const [line2, setLine2] = useState(
     "serving as a Google Developer Student Club Core Team Member at"

@@ -256,17 +256,42 @@ function SvgComponent({
         </text>
         {university ? (
           <>
-          {university.length < 45 ? (
-          <text
-            x="106"
-            y="317"
-            fill="#5f6368"
-            fontFamily={`'Open Sans'`}
-            fontSize="16px"
-            className="text__cls"
-          >
-            {`${university} for the 2020 - 2021 academic year.`}
-          </text>
+            {university.length < 45 ? (
+              <text
+                x="106"
+                y="317"
+                fill="#5f6368"
+                fontFamily={`'Open Sans'`}
+                fontSize="16px"
+                className="text__cls"
+              >
+                {`${university} for the 2020 - 2021 academic year.`}
+              </text>
+            ) : (
+              <>
+                <text
+                  x="106"
+                  y="317"
+                  fill="#5f6368"
+                  fontFamily={`'Open Sans'`}
+                  fontSize="16px"
+                  className="text__cls"
+                >
+                  {`${university}`}
+                </text>
+                <text
+                  x="106"
+                  y="340"
+                  fill="#5f6368"
+                  fontFamily={`'Open Sans'`}
+                  fontSize="16px"
+                  className="text__cls"
+                >
+                  {`for the 2020 - 2021 academic year.`}
+                </text>
+              </>
+            )}
+          </>
         ) : (
           <>
             <text
@@ -277,33 +302,8 @@ function SvgComponent({
               fontSize="16px"
               className="text__cls"
             >
-              {`${university}`}
+              {line3}
             </text>
-            <text
-              x="106"
-              y="340"
-              fill="#5f6368"
-              fontFamily={`'Open Sans'`}
-              fontSize="16px"
-              className="text__cls"
-            >
-              {`for the 2020 - 2021 academic year.`}
-            </text>
-          </>
-        )}
-          </>
-        ):(
-          <>
-          <text
-            x="106"
-            y="317"
-            fill="#5f6368"
-            fontFamily={`'Open Sans'`}
-            fontSize="16px"
-            className="text__cls"
-          >
-            {line3}
-          </text>
           </>
         )}
         <text

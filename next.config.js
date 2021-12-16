@@ -2,7 +2,7 @@ module.exports = {
   reactStrictMode: true,
   async rewrites() {
     return {
-      afterFiles:[
+      afterFiles: [
         {
           source: "/ahmed",
           destination: "/admin",
@@ -19,7 +19,7 @@ module.exports = {
           source: "/validate/:id",
           destination: "/validate",
         },
-      ]
+      ],
     };
   },
 };
