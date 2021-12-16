@@ -39,8 +39,8 @@ export default function Preview({ location }) {
   const [name, setName] = useState(
     location?.state?.name || "Firstname Lastname"
   );
-  const [university, setUniversity] = useState(
-    location?.state?.university || "[university]"
+  const [line3, setLine3] = useState(
+    location?.state?.line3 || "[Line 3]"
   );
   const [signature, setSignature] = useState(
     location?.state?.signature || "Signature Here"
@@ -178,7 +178,7 @@ export default function Preview({ location }) {
         <GDSCCoreTeamCertification2021
           id={certCode}
           name={name}
-          university={university}
+          line3={line3}
           signature={signature}
           date={date}
           leadUniversity={leadUniversity}

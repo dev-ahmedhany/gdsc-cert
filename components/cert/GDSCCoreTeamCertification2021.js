@@ -3,6 +3,7 @@ import * as React from "react";
 function SvgComponent({
   title,
   line2,
+  line3,
   id,
   name,
   university,
@@ -253,7 +254,9 @@ function SvgComponent({
           {line2 ||
             "serving as a Google Developer Student Club Core Team Member at"}
         </text>
-        {university.length < 45 ? (
+        {university ? (
+          <>
+          {university.length < 45 ? (
           <text
             x="106"
             y="317"
@@ -286,6 +289,21 @@ function SvgComponent({
             >
               {`for the 2020 - 2021 academic year.`}
             </text>
+          </>
+        )}
+          </>
+        ):(
+          <>
+          <text
+            x="106"
+            y="317"
+            fill="#5f6368"
+            fontFamily={`'Open Sans'`}
+            fontSize="16px"
+            className="text__cls"
+          >
+            {line3}
+          </text>
           </>
         )}
         <text

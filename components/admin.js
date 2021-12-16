@@ -46,7 +46,7 @@ export default function Admin({ user }) {
   const [names, setNames] = useState("");
   const [result, setResult] = useState("");
   const [disabled, setDisabled] = useState(false);
-  const [university, setUniversity] = useState("Aswan University");
+  const [line3, setLine3] = useState("Aswan University for the 2020 - 2021 academic year.");
   const [title, setTitle] = useState("2020 - 2021 GDSC Core Team Member");
   const [line2, setLine2] = useState(
     "serving as a Google Developer Student Club Core Team Member at"
@@ -104,12 +104,12 @@ export default function Admin({ user }) {
                   />
                   <TextField
                     onChange={(e) => {
-                      setUniversity(e.target.value);
+                      setLine3(e.target.value);
                     }}
-                    value={university}
+                    value={line3}
                     className={classes.input}
-                    label="University"
-                    placeholder="Aswan University"
+                    label="Line 3"
+                    placeholder="Aswan University for the 2020 - 2021 academic year."
                   />
                   <TextField
                     onChange={(e) => {
@@ -172,7 +172,7 @@ export default function Admin({ user }) {
                         pathname: "/preview",
                         state: {
                           name: names.split(/\r?\n/)[0],
-                          university,
+                          line3,
                           signature,
                           date,
                           leadUniversity,
@@ -205,7 +205,7 @@ export default function Admin({ user }) {
                                 title,
                                 line2,
                                 name,
-                                university,
+                                line3,
                                 signature,
                                 date,
                                 leadUniversity,
