@@ -40,7 +40,7 @@ export default function Preview({ location }) {
     location?.state?.name || "Firstname Lastname"
   );
   const [line3, setLine3] = useState(
-    location?.state?.line3 || "[Line 3]"
+    location?.state?.line3 || "Aswan University for the 2020 - 2021 academic year."
   );
   const [signature, setSignature] = useState(
     location?.state?.signature || "Signature Here"
@@ -102,11 +102,11 @@ export default function Preview({ location }) {
           />
           <TextField
             onChange={(e) => {
-              setUniversity(e.target.value);
+              setLine3(e.target.value);
             }}
-            value={university}
+            value={line3}
             className={classes.input}
-            placeholder="university"
+            placeholder="line 3"
           />
           <TextField
             onChange={(e) => {
