@@ -12,10 +12,6 @@ module.exports = {
           destination: "/admin",
         },
         {
-          source: "/c/:id",
-          destination: "/cert",
-        },
-        {
           source: "/validate/:id",
           destination: "/validate",
         },
