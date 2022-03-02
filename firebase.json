@@ -13,10 +13,6 @@
         "destination": "/admin.html"
       },
       {
-        "source": "/c/:id",
-        "destination": "/certificate.html?id=:id"
-      },
-      {
         "source": "/validate/**",
         "destination": "/validate.html"
       }
