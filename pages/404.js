@@ -11,8 +11,8 @@ export default function CertPage() {
   const [value, setValue] = useState({});
   useEffect(() => {
     if (typeof window !== "undefined") {
-      if (pathname.split("/").length === 2 && pathname.split("/")[0] == "c") {
-        const id = pathname.split("/")[1];
+      if (window.location.pathname.split("/").length === 2 && window.location.pathname.split("/")[0] == "c") {
+        const id = window.location.pathname.split("/")[1];
         setID(id);
         firebase
           .firestore()
@@ -27,6 +27,7 @@ export default function CertPage() {
           });
       } else {
         setNotFound(true);
+        setLoading(false);
       }
     }
   }, []);
