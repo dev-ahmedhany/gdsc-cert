@@ -27,13 +27,6 @@ export default function CertPage() {
     }
   }, []);
 
-  const [width, setWidth] = useState(300);
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setWidth(window.innerWidth * 0.9);
-    }
-  }, []);
-
   return loading ? (
     <>Loading...</>
   ) : value ? (
