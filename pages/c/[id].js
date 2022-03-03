@@ -12,25 +12,43 @@ export default function C(props) {
     <>
       <Head>
         <title>{`${props.name} - GDSC Certificate`}</title>
+        <meta name="title" content={`${props.name} - GDSC Certificate`} />
         <meta
           name="description"
-          content={`Google Develelopers Student Clubs Core Team 2020-2021 Certificate`}
+          content={`Google Develelopers Student Clubs Certificate`}
         />
+        <meta property="og:type" content="article" />
         <meta
           property="og:url"
           content={`https://gdsc-cert.web.app/c/${props.id}`}
         />
-        <meta property="og:type" content="article" />
         <meta
           property="og:title"
           content={`${props.name} - GDSC Certificate`}
         />
         <meta
           property="og:description"
-          content={`${props.name} - Google Develelopers Student Clubs Core Team 2020-2021 Certificate`}
+          content={`${props.name} - Google Develelopers Student Clubs Certificate`}
         />
         <meta
           property="og:image"
+          content={`https://gdsc-cert.web.app/c/${props.id}.png`}
+        />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta
+          property="twitter:url"
+          content={`https://gdsc-cert.web.app/c/${props.id}`}
+        />
+        <meta
+          property="twitter:title"
+          content={`${props.name} - GDSC Certificate`}
+        />
+        <meta
+          property="twitter:description"
+          content={`${props.name} - Google Develelopers Student Clubs Certificate`}
+        />
+        <meta
+          property="twitter:image"
           content={`https://gdsc-cert.web.app/c/${props.id}.png`}
         />
       </Head>
