@@ -225,6 +225,7 @@ export default function Admin({ user }) {
                               console.error(err);
                             });
                         });
+                        fetch("https://github.dev-ahmedhany.workers.dev/gdsc-cert")
                       }}
                       color="primary"
                       variant="contained"
@@ -242,10 +243,7 @@ export default function Admin({ user }) {
                     currently no way to get them back
                     <br />
                     <br />
-                    Url Preview will work after {timeLeft === 0
-                      ? 24
-                      : timeLeft}{" "}
-                    hour/s
+                    Url Preview will work after 2 min
                     <br />
                     Please wait then send the certificates
                   </Typography>
