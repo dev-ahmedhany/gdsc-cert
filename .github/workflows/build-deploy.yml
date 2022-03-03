@@ -25,9 +25,9 @@ jobs:
       uses: actions/cache@v2
       with:
         path: |
-          ~/.next
-          ~/public/c
-          ~/node_modules
+          **/.next
+          **/public/c
+          **/node_modules
         key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-build-
