@@ -19,6 +19,19 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Cache node modules
+      uses: actions/cache@v2
+      env:
+        cache-name: cache-node-modules
+      with:
+        path:  |
+          ~/.next
+          ~/public/c
+          ~/node_modules
+        key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-build-
+
     - name: Install Node.js
       uses: actions/setup-node@v1
       with:

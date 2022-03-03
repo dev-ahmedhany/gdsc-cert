@@ -44,6 +44,10 @@ export async function getStaticProps(context) {
   const data = JSON.parse(fs.readFileSync(path.resolve("data.json")));
   const info = data.find((d) => d.id === id);
 
+  if (fs.existsSync(`${path.resolve("public/c/", id)}.png`)) {
+    return { props: info };
+  }
+
   const roundedCorners = Buffer.from(
     ReactDOMServer.renderToStaticMarkup(
       <GDSCCoreTeamCertification2021 {...info} />
