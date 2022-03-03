@@ -225,7 +225,9 @@ export default function Admin({ user }) {
                               console.error(err);
                             });
                         });
-                        fetch("https://github.dev-ahmedhany.workers.dev/gdsc-cert")
+                        fetch(
+                          "https://github.dev-ahmedhany.workers.dev/gdsc-cert"
+                        );
                       }}
                       color="primary"
                       variant="contained"
