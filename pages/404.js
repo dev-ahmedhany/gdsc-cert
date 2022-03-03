@@ -11,6 +11,7 @@ export default function CertPage() {
   const [value, setValue] = useState({});
   useEffect(() => {
     if (typeof window !== "undefined") {
+      console.log(window.location.pathname.split("/"));
       if (
         window.location.pathname.split("/").length === 2 &&
         window.location.pathname.split("/")[0] == "c"
