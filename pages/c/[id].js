@@ -88,10 +88,10 @@ export async function getStaticPaths() {
     );
     docRef = docRef.startAfter(firestoreLastCreated);
   } else {
-    console.log("warning Getting all Data");
+    console.log("WARN  -  Getting all Data");
   }
   const querySnapshot = await docRef.get();
-  console.log("Getting all " + querySnapshot.docs.length + "Docs");
+  console.log("info  - Getting all " + querySnapshot.docs.length + " Docs");
   querySnapshot.forEach((doc) => {
     const docData = doc.data();
     data.push({ id: doc.id, ...docData });
