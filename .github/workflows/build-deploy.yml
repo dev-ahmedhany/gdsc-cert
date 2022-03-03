@@ -8,7 +8,9 @@ on:
     branches:
       - main
   schedule:
-  - cron: "0 0 * * *"
+    - cron: "0 0 * * *"
+  repository_dispatch:
+    types: [start-build-workflow]
 
 jobs:
   buildDeploy:
