@@ -28,6 +28,7 @@ jobs:
           **/.next
           **/public/c
           **/node_modules
+          **/data.json
         key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-build-

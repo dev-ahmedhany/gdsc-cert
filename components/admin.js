@@ -211,7 +211,8 @@ export default function Admin({ user }) {
                                 signature,
                                 date,
                                 leadUniversity,
-                                created: firebase.firestore.FieldValue.serverTimestamp()
+                                created:
+                                  firebase.firestore.FieldValue.serverTimestamp(),
                               });
                               return { name, id1 };
                             });
