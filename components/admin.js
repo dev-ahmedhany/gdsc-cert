@@ -7,6 +7,8 @@ import { Link, useLocation } from "react-router-dom";
 import Preview from "./preview";
 import SuperAdmin from "./superAdmin";
 
+const year = "2021 - 2022";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: "#F5F5F5",
@@ -47,9 +49,9 @@ export default function Admin({ user }) {
   const [result, setResult] = useState("");
   const [disabled, setDisabled] = useState(false);
   const [line3, setLine3] = useState(
-    "Aswan University for the 2020 - 2021 academic year."
+    `Aswan University for the ${year} academic year.`
   );
-  const [title, setTitle] = useState("2020 - 2021 GDSC Core Team Member");
+  const [title, setTitle] = useState(`${year} GDSC Core Team Member`);
   const [line2, setLine2] = useState(
     "serving as a Google Developer Student Club Core Team Member at"
   );
@@ -102,7 +104,16 @@ export default function Admin({ user }) {
                     value={title}
                     className={classes.input}
                     label="title"
-                    placeholder="2020 - 2021 GDSC Core Team Member"
+                    placeholder={`${year} GDSC Core Team Member`}
+                  />
+                  <TextField
+                    onChange={(e) => {
+                      setLine2(e.target.value);
+                    }}
+                    value={line2}
+                    className={classes.input}
+                    label="Line2"
+                    placeholder="serving as a Google Developer Student Club Core Team Member at"
                   />
                   <TextField
                     onChange={(e) => {
@@ -111,7 +122,7 @@ export default function Admin({ user }) {
                     value={line3}
                     className={classes.input}
                     label="Line 3"
-                    placeholder="Aswan University for the 2020 - 2021 academic year."
+                    placeholder={`Aswan University for the ${year} academic year.`}
                   />
                   <TextField
                     onChange={(e) => {
@@ -121,6 +132,15 @@ export default function Admin({ user }) {
                     label="Signature"
                     className={classes.input}
                     placeholder="Ahmed Hany"
+                  />
+                  <TextField
+                    onChange={(e) => {
+                      setLeadUniversity(e.target.value);
+                    }}
+                    value={leadUniversity}
+                    className={classes.input}
+                    label="Position"
+                    placeholder="Google Developer Student Clubs Lead, Aswan University"
                   />
                   <TextField
                     onChange={(e) => {
@@ -134,24 +154,6 @@ export default function Admin({ user }) {
                       month: "short",
                       day: "numeric",
                     })}
-                  />
-                  <TextField
-                    onChange={(e) => {
-                      setLeadUniversity(e.target.value);
-                    }}
-                    value={leadUniversity}
-                    className={classes.input}
-                    label="Position"
-                    placeholder="Google Developer Student Clubs Lead, Aswan University"
-                  />
-                  <TextField
-                    onChange={(e) => {
-                      setLine2(e.target.value);
-                    }}
-                    value={line2}
-                    className={classes.input}
-                    label="Line2"
-                    placeholder="serving as a Google Developer Student Club Core Team Member at"
                   />
                   <TextField
                     onChange={(e) => {

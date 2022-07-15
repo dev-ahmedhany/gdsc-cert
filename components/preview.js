@@ -13,6 +13,8 @@ import {
 import GDSCCoreTeamCertification2021 from "./cert/GDSCCoreTeamCertification2021";
 import { Link } from "react-router-dom";
 
+const year = "2021 - 2022";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: "#F5F5F5",
@@ -40,13 +42,12 @@ export default function Preview({ location }) {
     location?.state?.name || "Firstname Lastname"
   );
   const [line3, setLine3] = useState(
-    location?.state?.line3 ||
-      "Aswan University for the 2020 - 2021 academic year."
+    location?.state?.line3 || `Aswan University for the ${year} academic year.`
   );
   const [signature, setSignature] = useState(
     location?.state?.signature || "Signature Here"
   );
-  const [title, setTitle] = useState("2020 - 2021 GDSC Core Team Member");
+  const [title, setTitle] = useState(`${year} GDSC Core Team Member`);
   const [line2, setLine2] = useState(
     "serving as a Google Developer Student Club Core Team Member at"
   );
@@ -91,7 +92,7 @@ export default function Preview({ location }) {
             value={title}
             className={classes.input}
             label="title"
-            placeholder="2020 - 2021 GDSC Core Team Member"
+            placeholder={`${year} GDSC Core Team Member`}
           />
           <TextField
             onChange={(e) => {
@@ -100,6 +101,15 @@ export default function Preview({ location }) {
             value={name}
             className={classes.input}
             placeholder="name"
+          />
+          <TextField
+            onChange={(e) => {
+              setLine2(e.target.value);
+            }}
+            value={line2}
+            className={classes.input}
+            label="Line2"
+            placeholder="serving as a Google Developer Student Club Core Team Member at"
           />
           <TextField
             onChange={(e) => {
@@ -119,14 +129,6 @@ export default function Preview({ location }) {
           />
           <TextField
             onChange={(e) => {
-              setDate(e.target.value);
-            }}
-            value={date}
-            className={classes.input}
-            placeholder="date"
-          />
-          <TextField
-            onChange={(e) => {
               setLeadUniversity(e.target.value);
             }}
             value={leadUniversity}
@@ -135,12 +137,11 @@ export default function Preview({ location }) {
           />
           <TextField
             onChange={(e) => {
-              setLine2(e.target.value);
+              setDate(e.target.value);
             }}
-            value={line2}
+            value={date}
             className={classes.input}
-            label="Line2"
-            placeholder="serving as a Google Developer Student Club Core Team Member at"
+            placeholder="date"
           />
           <Paper className={classes.textBox}>
             <TextField
