@@ -61,7 +61,6 @@ export default function SuperAdmin({ user }) {
               flexDirection="column"
               display="flex"
               alignItems="center"
-              minWidth="500px"
               p={3}
             >
               <Typography variant="h5"> Users {value.docs.length}</Typography>
@@ -72,7 +71,9 @@ export default function SuperAdmin({ user }) {
                     width="100%"
                     justifyContent="space-between"
                   >
-                    <Typography>{doc.id}</Typography>
+                    <Typography style={{ wordBreak: "break-all" }}>
+                      {doc.id}
+                    </Typography>
                     <Typography>{doc.data().cert}</Typography>
                   </Box>
                 </React.Fragment>
@@ -100,7 +101,9 @@ export default function SuperAdmin({ user }) {
                             width="100%"
                             justifyContent="space-between"
                           >
-                            <Typography>{doc.id}</Typography>
+                            <Typography style={{ wordBreak: "break-all" }}>
+                              {doc.id}
+                            </Typography>
                           </Box>
                         </ListItem>
 
