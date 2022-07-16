@@ -32,7 +32,7 @@ export default function C(props) {
         />
         <meta
           property="og:image"
-          content={`https://gdsc-cert.web.app/c/${props.id}.png`}
+          content={`https://gdsc-cert.web.app/c/${props.id}.jpeg`}
         />
         <meta property="twitter:card" content="summary_large_image" />
         <meta
@@ -49,7 +49,7 @@ export default function C(props) {
         />
         <meta
           property="twitter:image"
-          content={`https://gdsc-cert.web.app/c/${props.id}.png`}
+          content={`https://gdsc-cert.web.app/c/${props.id}.jpeg`}
         />
       </Head>
       <Cert {...props}></Cert>
@@ -62,7 +62,7 @@ export async function getStaticProps(context) {
   const { data } = JSON.parse(fs.readFileSync(path.resolve("data.json")));
   const info = data.find((d) => d.id === id);
 
-  if (fs.existsSync(`${path.resolve("public/c/", id)}.png`)) {
+  if (fs.existsSync(`${path.resolve("public/c/", id)}.jpeg`)) {
     return { props: info };
   }
 
@@ -72,8 +72,8 @@ export async function getStaticProps(context) {
     )
   );
   sharp(roundedCorners)
-    .png()
-    .toFile(`${path.resolve("public/c/", id)}.png`)
+    .jpeg({quality:50})
+    .toFile(`${path.resolve("public/c/", id)}.jpeg`)
     .catch(function (err) {
       console.log(err);
     });
